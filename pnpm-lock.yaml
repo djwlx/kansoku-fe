@@ -1,6 +1,8 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@douyinfe/semi-icons': ^2.60.0
+  '@douyinfe/semi-icons-lab': ^2.60.0
   '@douyinfe/semi-ui': ^2.60.0
   '@modern-js-app/eslint-config': 2.53.0
   '@modern-js/app-tools': 2.53.0
@@ -21,6 +23,8 @@ specifiers:
   typescript: ~5.0.4
 
 dependencies:
+  '@douyinfe/semi-icons': 2.60.0_react@18.2.0
+  '@douyinfe/semi-icons-lab': 2.60.0_react-dom@18.2.0+react@18.2.0
   '@douyinfe/semi-ui': 2.60.0_react-dom@18.2.0+react@18.2.0
   '@modern-js/runtime': 2.53.0_8e70b46749da2f914bfa002f2c2020cc
   axios: 1.7.2
@@ -1661,6 +1665,16 @@ packages:
       lodash: 4.17.21
       memoize-one: 5.2.1
       scroll-into-view-if-needed: 2.2.31
+    dev: false
+
+  /@douyinfe/semi-icons-lab/2.60.0_react-dom@18.2.0+react@18.2.0:
+    resolution: {integrity: sha512-tt+LQREg7FQbgz7NWOKyfiOO4ssR1KxziCNkB+Ko0bMXucZYQx3Totbjon8qS59xi26ovzbsLKc/wDwvr6Ao+A==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /@douyinfe/semi-icons/2.60.0_react@18.2.0:

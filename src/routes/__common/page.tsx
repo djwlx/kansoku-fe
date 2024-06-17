@@ -1,5 +1,3 @@
-import './index.css';
-
 const Index = () => {
   return <div>hello</div>;
 };

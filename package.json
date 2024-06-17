@@ -25,6 +25,8 @@
     "dist/"
   ],
   "dependencies": {
+    "@douyinfe/semi-icons": "^2.60.0",
+    "@douyinfe/semi-icons-lab": "^2.60.0",
     "@douyinfe/semi-ui": "^2.60.0",
     "@modern-js/runtime": "2.53.0",
     "axios": "^1.7.2",
