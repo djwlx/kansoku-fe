@@ -1,13 +1,15 @@
 import { Nav } from '@douyinfe/semi-ui';
 import { IconConfig } from '@douyinfe/semi-icons-lab';
 import { useMatches, useNavigate } from '@modern-js/runtime/router';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import styles from './index.module.scss';
 
 function Menu() {
   const navigate = useNavigate();
   const matches = useMatches();
-  const pathKey = matches[matches?.length - 1]?.pathname;
+  const pathKey: string = matches[matches?.length - 1]?.pathname;
+  const [selectKeys, setSelectKeys] = useState<string[]>([]);
+
   const menuItems = useMemo(() => {
     return [
       {
@@ -36,9 +38,14 @@ function Menu() {
     ];
   }, []);
 
+  useEffect(() => {
+    setSelectKeys([pathKey]);
+  }, [pathKey]);
+
   return (
     <div className={styles.menu}>
       <Nav
+        selectedKeys={selectKeys}
         defaultSelectedKeys={[pathKey]}
         style={{ height: 'calc(100vh - 60px)' }}
         items={menuItems}
