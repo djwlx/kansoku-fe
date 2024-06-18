@@ -24,7 +24,7 @@ jobs:
 
       - name: Use pnpm
         run: |
-          npm install -g pnpm@6.35.1
+          npm install -g pnpm
 
       - name: Build
         run: |
