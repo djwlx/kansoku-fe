@@ -30,13 +30,14 @@ jobs:
         run: |
           pnpm install
           pnpm run build
+
+      - name: zip dist
+        run: |
+          zip -r dist.zip dist
+
       - name: Create Release
-        id: create_release
         uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v1.0.0
-          release_name: Release v1.0.0
-          draft: false
-          prerelease: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: 'dist.zip'
+          allowUpdates: true
