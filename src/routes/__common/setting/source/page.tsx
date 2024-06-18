@@ -1,4 +1,4 @@
 function SourceSetting() {
-  return <div>BasicSetting</div>;
+  return <div>sourceSetting</div>;
 }
 export default SourceSetting;

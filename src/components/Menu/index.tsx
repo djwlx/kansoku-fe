@@ -9,7 +9,31 @@ function Menu() {
   const matches = useMatches();
   const pathKey = matches[matches?.length - 1]?.pathname;
   const menuItems = useMemo(() => {
-    return [{ itemKey: '/setting', text: '设置', icon: <IconConfig /> }];
+    return [
+      {
+        itemKey: '/setting',
+        text: '设置',
+        icon: <IconConfig />,
+        items: [
+          {
+            itemKey: '/setting/basic',
+            text: '基本设置',
+          },
+          {
+            itemKey: '/setting/download',
+            text: '下载器设置',
+          },
+          {
+            itemKey: '/setting/source',
+            text: '源设置',
+          },
+          {
+            itemKey: '/setting/workflow',
+            text: '工作流设置',
+          },
+        ],
+      },
+    ];
   }, []);
 
   return (
@@ -21,7 +45,7 @@ function Menu() {
         footer={{
           collapseButton: true,
         }}
-        onClick={data => {
+        onSelect={data => {
           navigate(data.itemKey as string);
         }}
       />

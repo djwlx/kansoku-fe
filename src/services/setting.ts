@@ -5,5 +5,5 @@ export const getConfig = () => {
 };
 
 export const updateConfig = (config: Record<string, any>) => {
-  return request.put('/config', config);
+  return request.put('/api/v1/config', config);
 };

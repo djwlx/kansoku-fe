@@ -1,4 +1,4 @@
 function WorkFlowSetting() {
-  return <div>BasicSetting</div>;
+  return <div>workflowSetting</div>;
 }
 export default WorkFlowSetting;
