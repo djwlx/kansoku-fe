@@ -14,4 +14,7 @@ export default defineConfig({
       bundler: 'webpack', // Set to 'experimental-rspack' to enable rspack ⚡️🦀
     }),
   ],
+  output: {
+    disableTsChecker: true,
+  },
 });

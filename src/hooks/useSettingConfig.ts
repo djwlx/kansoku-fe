@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { getConfig } from '@/services/setting';
 
-const useSettingConfig = (param: {
+const useSettingConfig = (param?: {
   type: 'common' | 'download' | 'source' | 'workflow';
 }) => {
-  const { type } = param;
+  const { type } = param || {};
   const [setting, setSetting] = useState<Record<string, any>>();
 
   const fetchData = () => {
