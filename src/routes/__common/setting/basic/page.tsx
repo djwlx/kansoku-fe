@@ -1,10 +1,12 @@
 import { Form } from '@douyinfe/semi-ui';
 import FormContainer from '../components/FormContainer';
+import useSettingConfig from '@/hooks/useSettingConfig';
 
 const { Input, Section } = Form;
 function BasicSetting() {
+  const { setting } = useSettingConfig({ type: 'common' });
   return (
-    <FormContainer>
+    <FormContainer values={setting}>
       <Section text="Web">
         <Input field="common.web.username" label="用户名" />
         <Input field="common.web.password" label="密码" />

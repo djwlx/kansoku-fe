@@ -1,7 +1,11 @@
 import request from '@/utils/request';
 
-export const getConfig = () => {
-  return request.get('/api/v1/config');
+export const getConfig = (types?: string) => {
+  return request.get('/api/v1/config', {
+    params: {
+      types,
+    },
+  });
 };
 
 export const updateConfig = (config: Record<string, any>) => {
