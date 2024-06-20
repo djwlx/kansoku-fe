@@ -15,7 +15,11 @@ const EditModal = (props: EditModalProps) => {
   const useKeyArray = keyArray.filter(item => item !== data?.name);
 
   return (
-    <SideSheet title="新增源" visible={visible} onCancel={closeModal}>
+    <SideSheet
+      title={isEdit ? '编辑源' : '新增源'}
+      visible={visible}
+      onCancel={closeModal}
+    >
       <FormContainer submitAction={isEdit ? onEdit : onAdd} values={data}>
         <Input
           field="name"
