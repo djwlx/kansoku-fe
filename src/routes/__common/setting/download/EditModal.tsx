@@ -1,10 +1,12 @@
 import { SideSheet, Form } from '@douyinfe/semi-ui';
+import { useState } from 'react';
 import FormContainer from '../components/FormContainer';
 import { ModalHookProps } from '@/hooks/useModalHook';
+import useConfigEnum from '@/hooks/useConfigEnum';
 
 const { Input, Select } = Form;
 
-interface EditModalProps extends ModalHookProps {
+export interface EditModalProps extends ModalHookProps {
   onAdd: (item: any) => Promise<void>;
   onEdit: (item: any) => Promise<void>;
   keyArray?: string[];
@@ -13,6 +15,8 @@ const EditModal = (props: EditModalProps) => {
   const { visible, closeModal, onAdd, onEdit, keyArray = [], data } = props;
   const isEdit = Boolean(data);
   const useKeyArray = keyArray.filter(item => item !== data?.name);
+  const { configMap } = useConfigEnum();
+  const [hasSameName, setHasSameName] = useState(false);
 
   return (
     <SideSheet
@@ -24,20 +28,22 @@ const EditModal = (props: EditModalProps) => {
         <Input
           field="name"
           label="下载器名称"
-          rules={[
-            { required: true },
-            {
-              validator: (rule, value) => !useKeyArray?.includes(value),
-              message: '下载器名称不能重复',
-            },
-          ]}
+          extraText={hasSameName ? '已有同名下载器' : undefined}
+          onChange={v => {
+            if (useKeyArray.includes(v)) {
+              setHasSameName(true);
+            } else {
+              setHasSameName(false);
+            }
+          }}
+          rules={[{ required: true }]}
         />
         <Select
           style={{ width: '100%' }}
           field="type"
           label="下载器类型"
           rules={[{ required: true }]}
-          optionList={[{ label: 'qbittorrent', value: 'qbittorrent' }]}
+          optionList={configMap.download_type}
         />
         <Input
           field="addr"

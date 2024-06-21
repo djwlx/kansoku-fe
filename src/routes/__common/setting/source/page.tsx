@@ -140,6 +140,7 @@ function SourceSetting() {
       <Table
         scroll={{ x: '100%' }}
         columns={columns}
+        rowKey="id"
         dataSource={sourceList}
         pagination={false}
       />

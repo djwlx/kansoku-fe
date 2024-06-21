@@ -84,7 +84,7 @@ function DownloadSetting() {
             return (
               <Card
                 shadows="hover"
-                key={item.name}
+                key={item.id}
                 title={item.name}
                 style={{ width: 300 }}
                 footerLine={true}
