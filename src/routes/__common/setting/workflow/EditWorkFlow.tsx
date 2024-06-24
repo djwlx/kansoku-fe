@@ -71,7 +71,12 @@ function EditWorkFlow(props: EditModalProps) {
               />
               {values.type === 'source_download' && <SourceDownalod />}
               <Switch initValue={true} field="enable" label="是否启用" />
-              <Button loading={loading} onClick={onSubmit}>
+              <Button
+                type="secondary"
+                theme="solid"
+                loading={loading}
+                onClick={onSubmit}
+              >
                 保存
               </Button>
             </>

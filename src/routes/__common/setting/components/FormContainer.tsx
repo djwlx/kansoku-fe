@@ -53,7 +53,7 @@ function FormContainer(props: FormContainerProps) {
       <Form getFormApi={setFormApi} render={render}>
         {children}
       </Form>
-      <Button loading={loading} onClick={submit}>
+      <Button type="secondary" theme="solid" loading={loading} onClick={submit}>
         保存
       </Button>
     </div>

@@ -55,7 +55,11 @@ function DownloadSetting() {
   return (
     <div style={{ padding: 16 }}>
       <Space>
-        <Button type="secondary" onClick={() => setModalData('open')}>
+        <Button
+          type="secondary"
+          theme="solid"
+          onClick={() => setModalData('open')}
+        >
           添加下载器
         </Button>
       </Space>
@@ -74,6 +78,7 @@ function DownloadSetting() {
                   <Space>
                     <Button
                       type="secondary"
+                      theme="solid"
                       onClick={() => setModalData('open', item)}
                     >
                       编辑
@@ -85,7 +90,9 @@ function DownloadSetting() {
                       okType="danger"
                       onConfirm={() => onDelete(item)}
                     >
-                      <Button type="danger">删除</Button>
+                      <Button type="danger" theme="solid">
+                        删除
+                      </Button>
                     </Popconfirm>
                   </Space>
                 }

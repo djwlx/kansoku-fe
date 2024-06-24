@@ -65,7 +65,7 @@ function WorkFlowSetting() {
     {
       title: '是否启用',
       dataIndex: 'enable',
-      width: 50,
+      width: 100,
       render: (text: boolean, record: any) => {
         return (
           <Switch
@@ -114,7 +114,11 @@ function WorkFlowSetting() {
 
   return (
     <div style={{ padding: 16 }}>
-      <Button type="secondary" onClick={() => setModalData('open')}>
+      <Button
+        type="secondary"
+        theme="solid"
+        onClick={() => setModalData('open')}
+      >
         添加工作流
       </Button>
       <Table

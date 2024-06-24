@@ -4,7 +4,14 @@ import { useMatches, useNavigate } from '@modern-js/runtime/router';
 import { useEffect, useMemo, useState } from 'react';
 import styles from './index.module.scss';
 
-function Menu() {
+interface MenuProps {
+  collapseButton?: boolean;
+  border?: boolean;
+  onSelect?: () => void;
+  style?: React.CSSProperties;
+}
+function Menu(props: MenuProps) {
+  const { collapseButton = true, border = true, onSelect, style } = props;
   const navigate = useNavigate();
   const matches = useMatches();
   const pathKey: string = matches[matches?.length - 1]?.pathname;
@@ -43,17 +50,19 @@ function Menu() {
   }, [pathKey]);
 
   return (
-    <div className={styles.menu}>
+    <div>
       <Nav
         selectedKeys={selectKeys}
+        className={!border ? styles.menu : ''}
         defaultSelectedKeys={[pathKey]}
-        style={{ height: 'calc(100vh - 60px)' }}
+        style={style}
         items={menuItems}
         footer={{
-          collapseButton: true,
+          collapseButton,
         }}
         onSelect={data => {
           navigate(data.itemKey as string);
+          onSelect?.();
         }}
       />
     </div>

@@ -107,7 +107,11 @@ function SourceSetting() {
   return (
     <div style={{ padding: 16 }}>
       <Space>
-        <Button type="secondary" onClick={() => setModalData('open')}>
+        <Button
+          type="secondary"
+          theme="solid"
+          onClick={() => setModalData('open')}
+        >
           添加源
         </Button>
       </Space>
