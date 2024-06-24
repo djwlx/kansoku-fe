@@ -5,7 +5,7 @@ import { EditModalProps } from '../download/EditModal';
 import SourceDownalod from './SourceDownalod';
 import useConfigEnum from '@/hooks/useConfigEnum';
 
-const { Select, Input } = Form;
+const { Select, Input, Switch } = Form;
 function EditWorkFlow(props: EditModalProps) {
   const { visible, closeModal, data, onAdd, onEdit, keyArray = [] } = props;
   const useKeyArray = keyArray.filter(item => item !== data?.name);
@@ -70,6 +70,7 @@ function EditWorkFlow(props: EditModalProps) {
                 optionList={configMap.workflow_type}
               />
               {values.type === 'source_download' && <SourceDownalod />}
+              <Switch initValue={true} field="enable" label="是否启用" />
               <Button loading={loading} onClick={onSubmit}>
                 保存
               </Button>

@@ -2,11 +2,11 @@ import { Steps, Form } from '@douyinfe/semi-ui';
 import styles from './index.module.scss';
 import useConfigEnum from '@/hooks/useConfigEnum';
 
-const { Select, Switch, InputNumber } = Form;
+const { Select, InputNumber } = Form;
 function SourceDownalod() {
   const { configMap } = useConfigEnum();
   return (
-    <div>
+    <>
       <Steps
         className={styles.step}
         type="basic"
@@ -49,8 +49,7 @@ function SourceDownalod() {
         hideButtons
         suffix={'秒'}
       />
-      <Switch field="enable" initValue={true} label="是否启用" />
-    </div>
+    </>
   );
 }
 

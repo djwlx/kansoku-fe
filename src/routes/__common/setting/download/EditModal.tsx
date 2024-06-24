@@ -1,6 +1,7 @@
 import { SideSheet, Form } from '@douyinfe/semi-ui';
 import { useState } from 'react';
 import FormContainer from '../components/FormContainer';
+import QbitTorrent from './QbitTorrent';
 import { ModalHookProps } from '@/hooks/useModalHook';
 import useConfigEnum from '@/hooks/useConfigEnum';
 
@@ -27,43 +28,35 @@ const EditModal = (props: EditModalProps) => {
       <FormContainer
         submitAction={isEdit ? values => onEdit(data.id, values) : onAdd}
         values={data}
-      >
-        <Input
-          field="name"
-          label="下载器名称"
-          extraText={hasSameName ? '已有同名下载器' : undefined}
-          onChange={v => {
-            if (useKeyArray.includes(v)) {
-              setHasSameName(true);
-            } else {
-              setHasSameName(false);
-            }
-          }}
-          rules={[{ required: true }]}
-        />
-        <Select
-          style={{ width: '100%' }}
-          field="type"
-          label="下载器类型"
-          rules={[{ required: true }]}
-          optionList={configMap.download_type}
-        />
-        <Input
-          field="addr"
-          label="下载器连接地址"
-          rules={[{ required: true }]}
-        />
-        <Input
-          field="save_path"
-          label="下载器保存路径"
-          rules={[{ required: true }]}
-        />
-        <Input field="username" label="用户名" />
-        <Input field="password" label="密码" />
-        <Input field="mount_save_path" label="下载路径映射" />
-        <Input field="category" label="分组名" />
-        <Switch field="enable" initValue={true} label="是否启用" />
-      </FormContainer>
+        render={({ values }) => {
+          return (
+            <>
+              <Input
+                field="name"
+                label="下载器名称"
+                extraText={hasSameName ? '已有同名下载器' : undefined}
+                onChange={v => {
+                  if (useKeyArray.includes(v)) {
+                    setHasSameName(true);
+                  } else {
+                    setHasSameName(false);
+                  }
+                }}
+                rules={[{ required: true }]}
+              />
+              <Select
+                style={{ width: '100%' }}
+                field="type"
+                label="下载器类型"
+                rules={[{ required: true }]}
+                optionList={configMap.download_type}
+              />
+              {values.type === 'qbittorrent' && <QbitTorrent />}
+              <Switch field="enable" initValue={true} label="是否启用" />
+            </>
+          );
+        }}
+      />
     </SideSheet>
   );
 };

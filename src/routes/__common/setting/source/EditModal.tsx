@@ -2,6 +2,7 @@ import { SideSheet, Form } from '@douyinfe/semi-ui';
 import { useState } from 'react';
 import FormContainer from '../components/FormContainer';
 import { EditModalProps } from '../download/EditModal';
+import Mikanani from './Mikanani';
 import useConfigEnum from '@/hooks/useConfigEnum';
 
 const { Input, Select, Switch } = Form;
@@ -22,31 +23,35 @@ const EditModal = (props: EditModalProps) => {
       <FormContainer
         submitAction={isEdit ? values => onEdit(data.id, values) : onAdd}
         values={data}
-      >
-        <Input
-          field="name"
-          label="源名称"
-          extraText={hasSameName ? '已有同名源' : undefined}
-          onChange={v => {
-            if (useKeyArray.includes(v)) {
-              setHasSameName(true);
-            } else {
-              setHasSameName(false);
-            }
-          }}
-          rules={[{ required: true }]}
-        />
-        <Select
-          style={{ width: '100%' }}
-          field="type"
-          label="类型"
-          rules={[{ required: true }]}
-          optionList={configMap.source_type}
-        />
-        <Input field="rss_url" label="RSS地址" rules={[{ required: true }]} />
-        <Input field="title_regexp" label="过滤" />
-        <Switch field="enable" initValue={true} label="是否启用" />
-      </FormContainer>
+        render={({ values }) => {
+          return (
+            <>
+              <Input
+                field="name"
+                label="源名称"
+                extraText={hasSameName ? '已有同名源' : undefined}
+                onChange={v => {
+                  if (useKeyArray.includes(v)) {
+                    setHasSameName(true);
+                  } else {
+                    setHasSameName(false);
+                  }
+                }}
+                rules={[{ required: true }]}
+              />
+              <Select
+                style={{ width: '100%' }}
+                field="type"
+                label="类型"
+                rules={[{ required: true }]}
+                optionList={configMap.source_type}
+              />
+              {values.type === 'mikanani' && <Mikanani />}
+              <Switch field="enable" initValue={true} label="是否启用" />
+            </>
+          );
+        }}
+      />
     </SideSheet>
   );
 };

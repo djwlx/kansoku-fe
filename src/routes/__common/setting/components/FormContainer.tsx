@@ -1,16 +1,17 @@
 import { Button, Form, Toast } from '@douyinfe/semi-ui';
-import { FormApi } from '@douyinfe/semi-ui/lib/es/form';
+import { BaseFormProps, FormApi } from '@douyinfe/semi-ui/lib/es/form';
 import { useEffect, useState } from 'react';
 import { updateConfig } from '@/services/setting';
 
 interface FormContainerProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   values?: any;
   submitAction?: (values: any) => Promise<void>;
+  render?: BaseFormProps['render'];
 }
 
 function FormContainer(props: FormContainerProps) {
-  const { children, values, submitAction } = props;
+  const { children, values, submitAction, render } = props;
   const [formApi, setFormApi] = useState<FormApi>();
   const [loading, setLoading] = useState(false);
 
@@ -43,13 +44,15 @@ function FormContainer(props: FormContainerProps) {
 
   useEffect(() => {
     if (values && formApi) {
-      formApi?.setValues(values);
+      formApi?.setValues(values, { isOverride: true });
     }
   }, [values, formApi]);
 
   return (
     <div style={{ padding: 16 }}>
-      <Form getFormApi={setFormApi}>{children}</Form>
+      <Form getFormApi={setFormApi} render={render}>
+        {children}
+      </Form>
       <Button loading={loading} onClick={submit}>
         保存
       </Button>

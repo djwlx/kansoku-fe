@@ -69,7 +69,7 @@ function WorkFlowSetting() {
       render: (text: boolean, record: any) => {
         return (
           <Switch
-            defaultChecked={text}
+            checked={text}
             onChange={v => {
               const param = {
                 ...record,
