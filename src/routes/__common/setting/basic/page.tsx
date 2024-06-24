@@ -1,4 +1,5 @@
-import { Form, Toast } from '@douyinfe/semi-ui';
+import { Form, Toast, Tooltip } from '@douyinfe/semi-ui';
+import { IconHelpCircle } from '@douyinfe/semi-icons';
 import FormContainer from '../components/FormContainer';
 import useSettingConfig from '@/hooks/useSettingConfig';
 import { updateCommonConfig } from '@/services/setting';
@@ -17,6 +18,28 @@ function BasicSetting() {
   return (
     <FormContainer values={setting} submitAction={submitAction}>
       <Section text="Web">
+        <Input
+          field="web.host"
+          label={{
+            text: '地址',
+            extra: (
+              <Tooltip content="重启后生效">
+                <IconHelpCircle />
+              </Tooltip>
+            ),
+          }}
+        />
+        <Input
+          field="web.port"
+          label={{
+            text: '端口',
+            extra: (
+              <Tooltip content="重启后生效">
+                <IconHelpCircle />
+              </Tooltip>
+            ),
+          }}
+        />
         <Input field="web.username" label="用户名" />
         <Input field="web.password" label="密码" />
       </Section>

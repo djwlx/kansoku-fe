@@ -44,7 +44,7 @@ const EditModal = (props: EditModalProps) => {
           optionList={configMap.source_type}
         />
         <Input field="rss_url" label="RSS地址" rules={[{ required: true }]} />
-        <Input field="name_regexp" label="过滤" />
+        <Input field="title_regexp" label="过滤" />
         <Switch field="enable" initValue={true} label="是否启用" />
       </FormContainer>
     </SideSheet>
