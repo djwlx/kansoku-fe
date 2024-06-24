@@ -10,7 +10,11 @@ import {
 } from '@douyinfe/semi-ui';
 import EditModal from './EditModal';
 import useSettingConfig from '@/hooks/useSettingConfig';
-import { updateConfig } from '@/services/setting';
+import {
+  addProviderConfig,
+  deleteProviderConfig,
+  updateProviderConfig,
+} from '@/services/setting';
 import useModalHook from '@/hooks/useModalHook';
 
 const { Text } = Typography;
@@ -20,55 +24,32 @@ function DownloadSetting() {
   const keyArray = downloadList.map((item: any) => item.name);
   const { setModalData, closeModal, ...rest } = useModalHook();
 
-  const updateDownload = async (
-    list: any,
-    successMsg?: string,
-    errorMsg?: string,
-  ) => {
-    try {
-      const mergeValue = {
-        config: {
-          download: list,
-        },
-      };
-      const result = await updateConfig(mergeValue);
-      if (successMsg && result.data?.code === 200) {
-        Toast.success(successMsg);
-        fetchData();
-      }
-    } catch (e) {
-      if (errorMsg) {
-        Toast.error(errorMsg);
-      }
+  const onDelete = async (item: any) => {
+    const result = await deleteProviderConfig('download', item.id);
+    if (result.data?.code === 200) {
+      Toast.success('删除成功');
+      fetchData();
+      closeModal();
     }
   };
 
-  const onDelete = async (item: any) => {
-    const list = downloadList.filter((downloadItem: any) => {
-      return downloadItem.name !== item.name;
-    });
-    await updateDownload(list, '删除成功');
-  };
-
-  const onEdit = async (item: any) => {
-    const list = downloadList.map((downloadItem: any) => {
-      if (downloadItem.name === item.name) {
-        return {
-          ...downloadItem,
-          ...item,
-        };
-      } else {
-        return downloadItem;
-      }
-    });
-    await updateDownload(list, '修改成功');
-    closeModal();
+  const onEdit = async (id: string, item: any) => {
+    const param = { id, ...item };
+    const result = await updateProviderConfig('download', param);
+    if (result.data?.code === 200) {
+      Toast.success('修改成功');
+      fetchData();
+      closeModal();
+    }
   };
 
   const onAdd = async (item: any) => {
-    const list = [...downloadList, item];
-    await updateDownload(list, '添加成功');
-    closeModal();
+    const result = await addProviderConfig('download', item);
+    if (result.data?.code === 200) {
+      Toast.success('添加成功');
+      fetchData();
+      closeModal();
+    }
   };
 
   return (

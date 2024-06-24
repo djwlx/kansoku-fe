@@ -4,11 +4,11 @@ import FormContainer from '../components/FormContainer';
 import { ModalHookProps } from '@/hooks/useModalHook';
 import useConfigEnum from '@/hooks/useConfigEnum';
 
-const { Input, Select } = Form;
+const { Input, Select, Switch } = Form;
 
 export interface EditModalProps extends ModalHookProps {
   onAdd: (item: any) => Promise<void>;
-  onEdit: (item: any) => Promise<void>;
+  onEdit: (id: string, item: any) => Promise<void>;
   keyArray?: string[];
 }
 const EditModal = (props: EditModalProps) => {
@@ -24,7 +24,10 @@ const EditModal = (props: EditModalProps) => {
       visible={visible}
       onCancel={closeModal}
     >
-      <FormContainer submitAction={isEdit ? onEdit : onAdd} values={data}>
+      <FormContainer
+        submitAction={isEdit ? values => onEdit(data.id, values) : onAdd}
+        values={data}
+      >
         <Input
           field="name"
           label="下载器名称"
@@ -59,6 +62,7 @@ const EditModal = (props: EditModalProps) => {
         <Input field="password" label="密码" />
         <Input field="mount_save_path" label="下载路径映射" />
         <Input field="category" label="分组名" />
+        <Switch field="enable" initValue={true} label="是否启用" />
       </FormContainer>
     </SideSheet>
   );

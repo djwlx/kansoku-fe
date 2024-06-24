@@ -11,7 +11,11 @@ import { IconDelete, IconEdit } from '@douyinfe/semi-icons';
 import EditWorkFlow from './EditWorkFlow';
 import useSettingConfig from '@/hooks/useSettingConfig';
 import useModalHook from '@/hooks/useModalHook';
-import { addConfig, deleteConfig, updateConfig } from '@/services/setting';
+import {
+  addProviderConfig,
+  deleteProviderConfig,
+  updateProviderConfig,
+} from '@/services/setting';
 
 function WorkFlowSetting() {
   const { setting, fetchData } = useSettingConfig({ type: 'workflow' });
@@ -20,40 +24,30 @@ function WorkFlowSetting() {
   const { setModalData, closeModal, ...rest } = useModalHook();
 
   const onDelete = async (item: any) => {
-    const res = await deleteConfig('workflow', item.id);
-    if (res.data?.code === 200) {
-      Toast.success('已删除');
+    const result = await deleteProviderConfig('workflow', item.id);
+    if (result.data?.code === 200) {
+      Toast.success('删除成功');
       fetchData();
+      closeModal();
     }
   };
 
-  const onEdit = async (item: any, onSuccess?: () => void) => {
-    const res = await updateConfig({
-      config: {
-        workflow: [item],
-      },
-    });
-    if (res.data?.code === 200) {
-      if (onSuccess) {
-        onSuccess();
-      } else {
-        Toast.success('编辑成功');
-        closeModal();
-        fetchData();
-      }
+  const onEdit = async (id: string, item: any) => {
+    const param = { id, ...item };
+    const result = await updateProviderConfig('workflow', param);
+    if (result.data?.code === 200) {
+      Toast.success('修改成功');
+      fetchData();
+      closeModal();
     }
   };
 
   const onAdd = async (item: any) => {
-    const res = await addConfig({
-      config: {
-        workflow: item,
-      },
-    });
-    if (res) {
+    const result = await addProviderConfig('workflow', item);
+    if (result.data?.code === 200) {
       Toast.success('添加成功');
-      closeModal();
       fetchData();
+      closeModal();
     }
   };
 
@@ -81,7 +75,7 @@ function WorkFlowSetting() {
                 ...record,
                 enable: v,
               };
-              onEdit(param, () => Toast.success('修改成功'));
+              onEdit(param.id, param);
             }}
             aria-label="a switch for semi demo"
           />

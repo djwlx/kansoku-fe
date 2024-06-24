@@ -20,7 +20,7 @@ function EditWorkFlow(props: EditModalProps) {
       const values = await formApi?.validate();
       setLoading(true);
       if (isEdit) {
-        await onEdit(values);
+        await onEdit(data?.id, values);
       } else {
         await onAdd(values);
       }

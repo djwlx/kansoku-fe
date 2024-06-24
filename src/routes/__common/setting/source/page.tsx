@@ -11,7 +11,11 @@ import { IconDelete, IconEdit } from '@douyinfe/semi-icons';
 import EditModal from './EditModal';
 import useModalHook from '@/hooks/useModalHook';
 import useSettingConfig from '@/hooks/useSettingConfig';
-import { updateConfig } from '@/services/setting';
+import {
+  addProviderConfig,
+  deleteProviderConfig,
+  updateProviderConfig,
+} from '@/services/setting';
 
 const { Text } = Typography;
 function SourceSetting() {
@@ -72,62 +76,32 @@ function SourceSetting() {
     },
   ];
 
-  const updateSource = async (
-    list: any,
-    successMsg?: string,
-    errorMsg?: string,
-  ) => {
-    try {
-      const mergeValue = {
-        config: {
-          source: list,
-        },
-      };
-      const result = await updateConfig(mergeValue);
-      if (successMsg && result.data?.code === 200) {
-        Toast.success(successMsg);
-        fetchData();
-      }
-    } catch (e) {
-      if (errorMsg) {
-        Toast.error(errorMsg);
-      }
+  const onDelete = async (item: any) => {
+    const result = await deleteProviderConfig('source', item.id);
+    if (result.data?.code === 200) {
+      Toast.success('删除成功');
+      fetchData();
+      closeModal();
     }
   };
 
-  const onDelete = async (item: any) => {
-    const list = sourceList.filter((sourceItem: any) => {
-      return sourceItem.name !== item.name;
-    });
-    await updateSource(list, '删除成功');
-  };
-
-  const onEdit = async (item: any) => {
-    const list = sourceList.map((sourceItem: any) => {
-      if (sourceItem.name === item.name) {
-        return {
-          ...sourceItem,
-          ...item,
-        };
-      } else {
-        return sourceItem;
-      }
-    });
-
-    await updateSource(list, '修改成功');
-    closeModal();
+  const onEdit = async (id: string, item: any) => {
+    const param = { id, ...item };
+    const result = await updateProviderConfig('source', param);
+    if (result.data?.code === 200) {
+      Toast.success('修改成功');
+      fetchData();
+      closeModal();
+    }
   };
 
   const onAdd = async (item: any) => {
-    const list = [
-      {
-        ...item,
-        enable: true,
-      },
-      ...sourceList,
-    ];
-    await updateSource(list, '添加成功');
-    closeModal();
+    const result = await addProviderConfig('source', item);
+    if (result.data?.code === 200) {
+      Toast.success('添加成功');
+      fetchData();
+      closeModal();
+    }
   };
 
   return (

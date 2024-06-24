@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { cloneDeep } from 'lodash-es';
+import { Toast } from '@douyinfe/semi-ui';
 import { ENV } from './env';
 
 const request = axios.create({
@@ -26,6 +27,11 @@ request.interceptors.response.use(
       localStorage.removeItem('token');
       const path = window.location.pathname;
       window.location.href = `/login?redirect=${path}`;
+    } else {
+      const msg = response.data?.message;
+      if (msg) {
+        Toast.error(msg);
+      }
     }
   },
 );

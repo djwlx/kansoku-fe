@@ -4,7 +4,7 @@ import FormContainer from '../components/FormContainer';
 import { EditModalProps } from '../download/EditModal';
 import useConfigEnum from '@/hooks/useConfigEnum';
 
-const { Input, Select } = Form;
+const { Input, Select, Switch } = Form;
 
 const EditModal = (props: EditModalProps) => {
   const { visible, closeModal, onAdd, onEdit, keyArray = [], data } = props;
@@ -19,7 +19,10 @@ const EditModal = (props: EditModalProps) => {
       visible={visible}
       onCancel={closeModal}
     >
-      <FormContainer submitAction={isEdit ? onEdit : onAdd} values={data}>
+      <FormContainer
+        submitAction={isEdit ? values => onEdit(data.id, values) : onAdd}
+        values={data}
+      >
         <Input
           field="name"
           label="源名称"
@@ -42,6 +45,7 @@ const EditModal = (props: EditModalProps) => {
         />
         <Input field="rss_url" label="RSS地址" rules={[{ required: true }]} />
         <Input field="name_regexp" label="过滤" />
+        <Switch field="enable" initValue={true} label="是否启用" />
       </FormContainer>
     </SideSheet>
   );

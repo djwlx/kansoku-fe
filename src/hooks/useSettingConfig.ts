@@ -1,19 +1,31 @@
 import { useEffect, useState } from 'react';
-import { getConfig } from '@/services/setting';
+import {
+  ConfigType,
+  getCommonConfig,
+  getProviderConfig,
+} from '@/services/setting';
 
-const useSettingConfig = (param?: {
-  type: 'common' | 'download' | 'source' | 'workflow';
-}) => {
-  const { type } = param || {};
+type SettingType = ConfigType | 'common';
+
+const useSettingConfig = (param: { type: SettingType }) => {
+  const { type } = param;
   const [setting, setSetting] = useState<Record<string, any>>();
 
-  const fetchData = () => {
-    getConfig(type).then(res => {
-      if (res.data?.code === 200) {
-        const { config } = res.data?.data || {};
-        setSetting(config);
+  const fetchData = async () => {
+    try {
+      let result;
+      if (type === 'common') {
+        result = await getCommonConfig();
+      } else {
+        result = await getProviderConfig(type);
       }
-    });
+      if (result.data?.code === 200) {
+        const res = result.data?.data;
+        setSetting(res?.common || res?.config);
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {
