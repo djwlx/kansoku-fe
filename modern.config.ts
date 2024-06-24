@@ -8,6 +8,7 @@ export default defineConfig({
   },
   runtime: {
     router: true,
+    state: true,
   },
   plugins: [
     appTools({

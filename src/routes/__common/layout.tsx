@@ -1,16 +1,19 @@
 import { Outlet, useNavigate } from '@modern-js/runtime/router';
-import { IconExit, IconList } from '@douyinfe/semi-icons';
+import { IconExit, IconList, IconMoon, IconSun } from '@douyinfe/semi-icons';
 import { useEffect, useState } from 'react';
-import { SideSheet } from '@douyinfe/semi-ui';
+import { SideSheet, Space } from '@douyinfe/semi-ui';
+import { useModel } from '@modern-js/runtime/model';
 import styles from './index.module.scss';
 import Menu from '@/components/Menu';
 import { ENV } from '@/utils/env';
 import useModalHook from '@/hooks/useModalHook';
+import configModel from '@/model/config';
 
 export default function Layout() {
   const [device, setDevice] = useState<'ph' | 'pc'>('pc');
   const navigate = useNavigate();
   const { setModalData, visible, closeModal } = useModalHook();
+  const [{ theme }, actions] = useModel(configModel);
 
   const exit = () => {
     localStorage.removeItem('token');
@@ -44,7 +47,21 @@ export default function Layout() {
         <span className={styles.titleSpan} onClick={() => navigate('/')}>
           Kansoku
         </span>
-        <IconExit style={{ cursor: 'pointer' }} onClick={exit} />
+        <Space spacing={20}>
+          {theme === 'dark' && (
+            <IconSun
+              style={{ cursor: 'pointer' }}
+              onClick={() => actions.setTheme('light')}
+            />
+          )}
+          {theme === 'light' && (
+            <IconMoon
+              style={{ cursor: 'pointer' }}
+              onClick={() => actions.setTheme('dark')}
+            />
+          )}
+          <IconExit style={{ cursor: 'pointer' }} onClick={exit} />
+        </Space>
       </header>
 
       <div style={{ display: 'flex' }}>
