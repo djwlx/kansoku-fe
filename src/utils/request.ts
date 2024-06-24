@@ -1,7 +1,9 @@
 import axios from 'axios';
-import { cloneDeep } from 'lodash-es';
 import { Toast } from '@douyinfe/semi-ui';
+import cloneDeep from 'lodash-es/cloneDeep';
 import { ENV } from './env';
+// windows中这样使用lodash-es报错
+// import { cloneDeep } from 'lodash-es';
 
 const request = axios.create({
   baseURL: ENV.isProd ? undefined : 'http://127.0.0.1:8419',

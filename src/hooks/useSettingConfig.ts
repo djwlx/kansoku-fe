@@ -23,9 +23,7 @@ const useSettingConfig = (param: { type: SettingType }) => {
         const res = result.data?.data;
         setSetting(res?.common || res?.config);
       }
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
 
   useEffect(() => {
