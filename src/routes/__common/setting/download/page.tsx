@@ -16,6 +16,8 @@ import {
   updateProviderConfig,
 } from '@/services/setting';
 import useModalHook from '@/hooks/useModalHook';
+import { renderMap } from '@/utils/render';
+import useConfigEnum from '@/hooks/useConfigEnum';
 
 const { Text } = Typography;
 function DownloadSetting() {
@@ -23,6 +25,7 @@ function DownloadSetting() {
   const downloadList = setting?.download || [];
   const keyArray = downloadList.map((item: any) => item.name);
   const { setModalData, closeModal, ...rest } = useModalHook();
+  const { configMap } = useConfigEnum();
 
   const onDelete = async (item: any) => {
     const result = await deleteProviderConfig('download', item.id);
@@ -107,7 +110,10 @@ function DownloadSetting() {
                             ellipsis={{ showTooltip: true }}
                             style={{ width: 130 }}
                           >
-                            {item.type}
+                            {renderMap.optionRender(
+                              item.type,
+                              configMap.download_type,
+                            )}
                           </Text>
                         ),
                       },

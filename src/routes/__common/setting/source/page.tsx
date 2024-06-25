@@ -16,6 +16,8 @@ import {
   deleteProviderConfig,
   updateProviderConfig,
 } from '@/services/setting';
+import { renderMap } from '@/utils/render';
+import useConfigEnum from '@/hooks/useConfigEnum';
 
 const { Text } = Typography;
 function SourceSetting() {
@@ -23,6 +25,8 @@ function SourceSetting() {
   const sourceList = setting?.source || [];
   const keyArray = sourceList.map((item: any) => item.name);
   const { setModalData, closeModal, ...rest } = useModalHook();
+  const { configMap } = useConfigEnum();
+
   const columns: ColumnProps[] = [
     {
       title: '源名称',
@@ -33,6 +37,9 @@ function SourceSetting() {
       title: '类型',
       dataIndex: 'type',
       width: 100,
+      render: (text: string) => {
+        return renderMap.optionRender(text, configMap.source_type);
+      },
     },
     {
       title: 'RSS链接',
