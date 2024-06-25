@@ -1,7 +1,3 @@
-:root {
-  /* --semi-color-secondary */
-  --kansoku-primary-color: rgba(0, 149, 238, 1);
-}
 html,
 body {
   padding: 0;
@@ -9,6 +5,9 @@ body {
   font-family: PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
   color: var(--semi-color-text-0);
   background-color: var(--semi-color-bg-0);
+
+  /* 变量 */
+  --kansoku-primary-color: var(--semi-color-secondary);
 }
 
 p {

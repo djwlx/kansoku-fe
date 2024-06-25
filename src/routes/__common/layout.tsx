@@ -36,7 +36,7 @@ export default function Layout() {
   }, []);
 
   return (
-    <div style={{ minWidth: 500 }}>
+    <div style={{ minWidth: 400 }}>
       <header className={styles.header}>
         {device === 'ph' && (
           <IconList

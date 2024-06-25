@@ -4,6 +4,7 @@ import FormContainer from '../components/FormContainer';
 import { EditModalProps } from '../download/EditModal';
 import Mikanani from './Mikanani';
 import useConfigEnum from '@/hooks/useConfigEnum';
+import { ENV } from '@/utils/env';
 
 const { Input, Select, Switch } = Form;
 
@@ -18,6 +19,9 @@ const EditModal = (props: EditModalProps) => {
     <SideSheet
       title={isEdit ? '编辑源' : '新增源'}
       visible={visible}
+      style={{
+        maxWidth: ENV.maxWidth,
+      }}
       onCancel={closeModal}
     >
       <FormContainer
@@ -47,7 +51,12 @@ const EditModal = (props: EditModalProps) => {
                 optionList={configMap.source_type}
               />
               {values.type === 'mikanani' && <Mikanani />}
-              <Switch field="enable" initValue={true} label="是否启用" />
+              <Switch
+                disabled
+                field="enable"
+                initValue={true}
+                label="是否启用"
+              />
             </>
           );
         }}

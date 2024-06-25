@@ -16,12 +16,15 @@ import {
   deleteProviderConfig,
   updateProviderConfig,
 } from '@/services/setting';
+import useConfigEnum from '@/hooks/useConfigEnum';
+import { renderMap } from '@/utils/render';
 
 function WorkFlowSetting() {
   const { setting, fetchData } = useSettingConfig({ type: 'workflow' });
   const workflowList = setting?.workflow || [];
   const keyArray = workflowList.map((item: any) => item.name);
   const { setModalData, closeModal, ...rest } = useModalHook();
+  const { configMap } = useConfigEnum();
 
   const onDelete = async (item: any) => {
     const result = await deleteProviderConfig('workflow', item.id);
@@ -61,6 +64,9 @@ function WorkFlowSetting() {
       title: '工作流类型',
       dataIndex: 'type',
       width: 200,
+      render: (text: string) => {
+        return renderMap.optionRender(text, configMap.workflow_type);
+      },
     },
     {
       title: '是否启用',

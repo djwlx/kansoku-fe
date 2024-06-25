@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { EditModalProps } from '../download/EditModal';
 import SourceDownalod from './SourceDownalod';
 import useConfigEnum from '@/hooks/useConfigEnum';
+import { ENV } from '@/utils/env';
 
 const { Select, Input, Switch } = Form;
 function EditWorkFlow(props: EditModalProps) {
@@ -41,7 +42,7 @@ function EditWorkFlow(props: EditModalProps) {
       visible={visible}
       onCancel={closeModal}
       title={isEdit ? '编辑工作流' : '添加工作流'}
-      style={{ padding: 16 }}
+      style={{ padding: 16, maxWidth: ENV.maxWidth }}
     >
       <Form
         getFormApi={setFormApi}

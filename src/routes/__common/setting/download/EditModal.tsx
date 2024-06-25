@@ -4,6 +4,7 @@ import FormContainer from '../components/FormContainer';
 import QbitTorrent from './QbitTorrent';
 import { ModalHookProps } from '@/hooks/useModalHook';
 import useConfigEnum from '@/hooks/useConfigEnum';
+import { ENV } from '@/utils/env';
 
 const { Input, Select, Switch } = Form;
 
@@ -24,6 +25,9 @@ const EditModal = (props: EditModalProps) => {
       title={isEdit ? '编辑下载器' : '新增下载器'}
       visible={visible}
       onCancel={closeModal}
+      style={{
+        maxWidth: ENV.maxWidth,
+      }}
     >
       <FormContainer
         submitAction={isEdit ? values => onEdit(data.id, values) : onAdd}
@@ -52,7 +56,12 @@ const EditModal = (props: EditModalProps) => {
                 optionList={configMap.download_type}
               />
               {values.type === 'qbittorrent' && <QbitTorrent />}
-              <Switch field="enable" initValue={true} label="是否启用" />
+              <Switch
+                disabled
+                field="enable"
+                initValue={true}
+                label="是否启用"
+              />
             </>
           );
         }}
