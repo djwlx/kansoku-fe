@@ -30,8 +30,7 @@ jobs:
           npm install -g pnpm
           pnpm install
           pnpm run build
-          mv dist public
-          zip -r dist.zip public
+          zip -r dist.zip dist
 
       - name: Release
         uses: softprops/action-gh-release@v2
