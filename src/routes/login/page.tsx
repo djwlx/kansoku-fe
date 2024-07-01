@@ -3,6 +3,7 @@ import type { FormApi as SFormApi } from '@douyinfe/semi-ui/lib/es/form';
 import { useState } from 'react';
 import { useNavigate } from '@modern-js/runtime/router';
 import { login } from '@/services/user';
+import { ENV } from '@/utils/env';
 
 const { Input } = Form;
 function Login() {
@@ -34,17 +35,48 @@ function Login() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 16,
-        paddingTop: 50,
+        backgroundColor: '#f5f5f9',
+        justifyContent: 'center',
       }}
     >
-      <Form getFormApi={setFormApi} style={{ width: 200 }}>
-        <Input field="username" label="用户名" />
-        <Input field="password" label="密码" />
-      </Form>
-      <Button onClick={submit} style={{ width: 200 }}>
-        登录
-      </Button>
+      <main
+        style={{
+          width: 400,
+          maxWidth: '100%',
+          minWidth: ENV.maxWidth,
+          textAlign: 'center',
+          padding: 16,
+          margin: 16,
+          backgroundColor: '#fff',
+          boxShadow: 'rgba(0, 0, 0, 0.05) 0px 0.5rem 2rem',
+        }}
+      >
+        <header
+          style={{
+            fontSize: 20,
+            fontWeight: 'bolder',
+            color: 'var(--kansoku-primary-color)',
+          }}
+        >
+          kansoku
+        </header>
+        <Form
+          labelPosition="inset"
+          getFormApi={setFormApi}
+          style={{ width: '100%' }}
+        >
+          <Input rules={[{ required: true }]} field="username" label="用户名" />
+          <Input
+            rules={[{ required: true }]}
+            field="password"
+            mode="password"
+            label="密码"
+          />
+        </Form>
+        <Button theme="solid" onClick={submit} style={{ width: '100%' }}>
+          登录
+        </Button>
+      </main>
     </div>
   );
 }
