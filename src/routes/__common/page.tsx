@@ -1,4 +1,10 @@
+import { useEffect } from 'react';
+import { getInfo } from '@/services/setting';
+
 const Index = () => {
+  useEffect(() => {
+    getInfo();
+  }, []);
   return (
     <h3
       style={{

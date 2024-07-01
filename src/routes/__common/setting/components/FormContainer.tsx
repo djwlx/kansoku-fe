@@ -1,12 +1,11 @@
-import { Button, Form, Toast } from '@douyinfe/semi-ui';
+import { Button, Form } from '@douyinfe/semi-ui';
 import { BaseFormProps, FormApi } from '@douyinfe/semi-ui/lib/es/form';
 import { useEffect, useState } from 'react';
-import { updateConfig } from '@/services/setting';
 
 interface FormContainerProps {
   children?: React.ReactNode;
   values?: any;
-  submitAction?: (values: any) => Promise<void>;
+  submitAction: (values: any) => Promise<void>;
   render?: BaseFormProps['render'];
 }
 
@@ -15,26 +14,12 @@ function FormContainer(props: FormContainerProps) {
   const [formApi, setFormApi] = useState<FormApi>();
   const [loading, setLoading] = useState(false);
 
-  const defaultSubmit = async (formValues: any) => {
-    const mergeValue = {
-      config: {
-        ...formValues,
-      },
-    };
-    const result = await updateConfig(mergeValue);
-    if (result.data?.code === 200) {
-      Toast.success('保存成功');
-    }
-  };
-
   const submit = async () => {
     try {
       const formValues = await formApi?.validate();
       setLoading(true);
       if (submitAction) {
         await submitAction(formValues);
-      } else {
-        await defaultSubmit(formValues);
       }
     } catch (e) {
     } finally {
