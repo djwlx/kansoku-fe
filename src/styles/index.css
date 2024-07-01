@@ -8,6 +8,7 @@ body {
 
   /* 变量 */
   --kansoku-primary-color: var(--semi-color-secondary);
+  --kansoku-grey-color: rgba(28, 30, 35, 0.6);
 }
 
 p {

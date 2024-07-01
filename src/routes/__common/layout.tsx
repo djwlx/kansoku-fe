@@ -1,5 +1,11 @@
 import { Outlet, useNavigate } from '@modern-js/runtime/router';
-import { IconExit, IconList, IconMoon, IconSun } from '@douyinfe/semi-icons';
+import {
+  IconExit,
+  IconGithubLogo,
+  IconList,
+  IconMoon,
+  IconSun,
+} from '@douyinfe/semi-icons';
 import { useEffect, useState } from 'react';
 import { SideSheet, Space } from '@douyinfe/semi-ui';
 import { useModel } from '@modern-js/runtime/model';
@@ -48,6 +54,10 @@ export default function Layout() {
           Kansoku
         </span>
         <Space spacing={20}>
+          <IconGithubLogo
+            style={{ cursor: 'pointer' }}
+            onClick={() => window.open('https://github.com/wetor/kansoku')}
+          />
           {theme === 'dark' && (
             <IconSun
               style={{ cursor: 'pointer' }}
@@ -80,7 +90,12 @@ export default function Layout() {
         onCancel={closeModal}
         width={300}
       >
-        <Menu border={false} collapseButton={false} onSelect={closeModal} />
+        <Menu
+          border={false}
+          collapseButton={false}
+          style={{ height: 'calc(100vh - 136px)' }}
+          onSelect={closeModal}
+        />
       </SideSheet>
     </div>
   );

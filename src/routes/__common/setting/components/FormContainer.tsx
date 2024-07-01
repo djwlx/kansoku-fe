@@ -7,10 +7,11 @@ interface FormContainerProps {
   values?: any;
   submitAction: (values: any) => Promise<void>;
   render?: BaseFormProps['render'];
+  style?: React.CSSProperties;
 }
 
 function FormContainer(props: FormContainerProps) {
-  const { children, values, submitAction, render } = props;
+  const { children, values, submitAction, render, style } = props;
   const [formApi, setFormApi] = useState<FormApi>();
   const [loading, setLoading] = useState(false);
 
@@ -34,7 +35,7 @@ function FormContainer(props: FormContainerProps) {
   }, [values, formApi]);
 
   return (
-    <div style={{ padding: 16 }}>
+    <div style={{ padding: 16, ...style }}>
       <Form getFormApi={setFormApi} render={render}>
         {children}
       </Form>

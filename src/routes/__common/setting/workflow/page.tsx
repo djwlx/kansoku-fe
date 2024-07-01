@@ -128,6 +128,7 @@ function WorkFlowSetting() {
         添加工作流
       </Button>
       <Table
+        style={{ marginTop: 16 }}
         scroll={{ x: '100%' }}
         columns={columns}
         rowKey="id"
