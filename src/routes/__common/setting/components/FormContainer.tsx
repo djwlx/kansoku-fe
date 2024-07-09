@@ -1,31 +1,19 @@
-import { Button, Form, Toast } from '@douyinfe/semi-ui';
+import { Button, Form } from '@douyinfe/semi-ui';
 import { BaseFormProps, FormApi } from '@douyinfe/semi-ui/lib/es/form';
 import { useEffect, useState } from 'react';
-import { updateConfig } from '@/services/setting';
 
 interface FormContainerProps {
   children?: React.ReactNode;
   values?: any;
-  submitAction?: (values: any) => Promise<void>;
+  submitAction: (values: any) => Promise<void>;
   render?: BaseFormProps['render'];
+  style?: React.CSSProperties;
 }
 
 function FormContainer(props: FormContainerProps) {
-  const { children, values, submitAction, render } = props;
+  const { children, values, submitAction, render, style } = props;
   const [formApi, setFormApi] = useState<FormApi>();
   const [loading, setLoading] = useState(false);
-
-  const defaultSubmit = async (formValues: any) => {
-    const mergeValue = {
-      config: {
-        ...formValues,
-      },
-    };
-    const result = await updateConfig(mergeValue);
-    if (result.data?.code === 200) {
-      Toast.success('保存成功');
-    }
-  };
 
   const submit = async () => {
     try {
@@ -33,8 +21,6 @@ function FormContainer(props: FormContainerProps) {
       setLoading(true);
       if (submitAction) {
         await submitAction(formValues);
-      } else {
-        await defaultSubmit(formValues);
       }
     } catch (e) {
     } finally {
@@ -49,7 +35,7 @@ function FormContainer(props: FormContainerProps) {
   }, [values, formApi]);
 
   return (
-    <div style={{ padding: 16 }}>
+    <div style={{ padding: 16, ...style }}>
       <Form getFormApi={setFormApi} render={render}>
         {children}
       </Form>

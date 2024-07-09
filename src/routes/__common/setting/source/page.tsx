@@ -36,7 +36,7 @@ function SourceSetting() {
     {
       title: '类型',
       dataIndex: 'type',
-      width: 100,
+      width: 150,
       render: (text: string) => {
         return renderMap.optionRender(text, configMap.source_type);
       },
@@ -123,6 +123,7 @@ function SourceSetting() {
         </Button>
       </Space>
       <Table
+        style={{ marginTop: 16 }}
         scroll={{ x: '100%' }}
         columns={columns}
         rowKey="id"

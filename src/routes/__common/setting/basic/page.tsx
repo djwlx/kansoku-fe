@@ -41,7 +41,7 @@ function BasicSetting() {
           }}
         />
         <Input field="web.username" label="用户名" />
-        <Input field="web.password" label="密码" />
+        <Input field="web.password" mode="password" label="密码" />
       </Section>
       <Section text="其他">
         <Input field="temp_path" label="临时目录" />
