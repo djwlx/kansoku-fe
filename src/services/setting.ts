@@ -67,3 +67,7 @@ export const getConfigEnum = () => {
 export const getInfo = () => {
   return request.get('/api/v1/common/info');
 };
+
+export const testSchema = () => {
+  return request.get('/api/v1/view');
+};
