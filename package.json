@@ -25,9 +25,13 @@
     "dist/"
   ],
   "dependencies": {
+    "@antv/x6": "^2.18.1",
     "@douyinfe/semi-icons": "^2.60.0",
     "@douyinfe/semi-icons-lab": "^2.60.0",
     "@douyinfe/semi-ui": "^2.60.0",
+    "@formily/core": "^2.3.2",
+    "@formily/react": "^2.3.2",
+    "@formily/semi": "^1.0.3",
     "@modern-js/runtime": "2.53.0",
     "axios": "^1.7.2",
     "lodash-es": "^4.17.21",

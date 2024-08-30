@@ -29,16 +29,12 @@ function Menu(props: MenuProps) {
             text: '基本设置',
           },
           {
-            itemKey: '/setting/download',
-            text: '下载器设置',
-          },
-          {
-            itemKey: '/setting/source',
-            text: '源设置',
+            itemKey: '/setting/template',
+            text: '配置模板',
           },
           {
             itemKey: '/setting/workflow',
-            text: '工作流设置',
+            text: '工作流',
           },
         ],
       },
