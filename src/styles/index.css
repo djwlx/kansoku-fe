@@ -20,3 +20,16 @@ p {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
 }
+
+/* 全局一些样式 */
+.formily-semi-item-layout-vertical .formily-semi-item-label {
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 3px;
+}
+.formily-semi-item-label-tooltip {
+  margin: 0;
+  padding: 0;
+  height: 16px;
+  width: 16px;
+}

@@ -13,6 +13,9 @@ const basicSchema: DSchema = {
         title: '地址',
         'x-decorator': 'FormItem',
         'x-component': 'Input',
+        'x-decorator-props': {
+          tooltip: '重启后生效',
+        },
       },
       port: {
         type: 'string',
