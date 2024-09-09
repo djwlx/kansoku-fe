@@ -2,6 +2,8 @@ lockfileVersion: 5.3
 
 specifiers:
   '@antv/x6': ^2.18.1
+  '@antv/x6-plugin-selection': ^2.2.2
+  '@antv/x6-react-shape': ^2.2.3
   '@douyinfe/semi-icons': ^2.60.0
   '@douyinfe/semi-icons-lab': ^2.60.0
   '@douyinfe/semi-ui': ^2.60.0
@@ -30,6 +32,8 @@ specifiers:
 
 dependencies:
   '@antv/x6': 2.18.1
+  '@antv/x6-plugin-selection': 2.2.2_@antv+x6@2.18.1
+  '@antv/x6-react-shape': 2.2.3_0c26839fd7a9ac22a23b450856ad7084
   '@douyinfe/semi-icons': 2.61.0_react@18.2.0
   '@douyinfe/semi-icons-lab': 2.61.0_react-dom@18.2.0+react@18.2.0
   '@douyinfe/semi-ui': 2.61.0_react-dom@18.2.0+react@18.2.0
@@ -76,6 +80,26 @@ packages:
 
   /@antv/x6-geometry/2.0.5:
     resolution: {integrity: sha512-MId6riEQkxphBpVeTcL4ZNXL4lScyvDEPLyIafvWMcWNTGK0jgkK7N20XSzqt8ltJb0mGUso5s56mrk8ysHu2A==}
+    dev: false
+
+  /@antv/x6-plugin-selection/2.2.2_@antv+x6@2.18.1:
+    resolution: {integrity: sha512-s2gtR9Onlhr7HOHqyqg0d+4sG76JCcQEbvrZZ64XmSChlvieIPlC3YtH4dg1KMNhYIuBmBmpSum6S0eVTEiPQw==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.18.1
+    dev: false
+
+  /@antv/x6-react-shape/2.2.3_0c26839fd7a9ac22a23b450856ad7084:
+    resolution: {integrity: sha512-42PGxk3XLnx9bsHQiRPauai5UQCrsh0MbWI3MyHRpjQaC30FK1rqyjH/EJ8qH0p6/cAndszZzCaiPqBbs3FqLQ==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+      react: '>=18.0.0'
+      react-dom: '>= 18.0.0'
+    dependencies:
+      '@antv/x6': 2.18.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /@antv/x6/2.18.1:

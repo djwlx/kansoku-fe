@@ -8,6 +8,7 @@ import {
 } from '@douyinfe/semi-ui';
 import { ColumnProps } from '@douyinfe/semi-ui/lib/es/table';
 import { IconDelete, IconEdit } from '@douyinfe/semi-icons';
+import { useNavigate } from '@modern-js/runtime/router';
 import EditWorkFlow from './EditWorkFlow';
 import useSettingConfig from '@/hooks/useSettingConfig';
 import useModalHook from '@/hooks/useModalHook';
@@ -25,6 +26,7 @@ function WorkFlowSetting() {
   const keyArray = workflowList.map((item: any) => item.name);
   const { setModalData, closeModal, ...rest } = useModalHook();
   const { configMap } = useConfigEnum();
+  const navigate = useNavigate();
 
   const onDelete = async (item: any) => {
     const result = await deleteProviderConfig('workflow', item.id);
@@ -123,7 +125,10 @@ function WorkFlowSetting() {
       <Button
         type="secondary"
         theme="solid"
-        onClick={() => setModalData('open')}
+        onClick={() => {
+          // setModalData('open')
+          navigate('/setting/workflow/new');
+        }}
       >
         添加工作流
       </Button>
