@@ -10,8 +10,11 @@ export const getEdgesAndNodes = (data: any) => {
     const useNode = {
       id: `node-${index}`,
       shape: processSettingConfig.node.shape,
-      x: 0 + (200 + 50) * index,
-      y: 100,
+      x:
+        2 +
+        (processSettingConfig.node.width + processSettingConfig.padding) *
+          index,
+      y: processSettingConfig.padding,
       data: nodeItem,
       ports: [
         {

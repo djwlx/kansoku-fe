@@ -1,17 +1,24 @@
 import { FormProvider, ISchema } from '@formily/react';
-import { FC, useEffect, useMemo } from 'react';
-import { createForm, Form } from '@formily/core';
+import { useEffect, useMemo } from 'react';
+import { createForm } from '@formily/core';
 import { SchemaField, Submit } from '@formily/semi';
 import { DSchema } from '@/utils/formily';
 
 interface FormilyFormProps {
   schema: DSchema;
-  getFormInstance?: (form: any) => Form;
+  getFormInstance?: (form: any) => void;
   onSubmit?: (values: any) => void;
   initValues?: any;
+  submitText?: string;
 }
-const FormilyForm: FC<FormilyFormProps> = props => {
-  const { schema, getFormInstance, onSubmit, initValues } = props;
+function FormilyForm(props: FormilyFormProps) {
+  const {
+    schema,
+    getFormInstance,
+    onSubmit,
+    initValues,
+    submitText = '提交',
+  } = props;
   const form = useMemo(() => createForm(), []);
 
   const useSchema = useMemo(() => {
@@ -49,10 +56,10 @@ const FormilyForm: FC<FormilyFormProps> = props => {
       <SchemaField schema={useSchema} />
       {onSubmit && (
         <Submit onSubmit={onSubmit}>
-          <span>提交</span>
+          <span>{submitText}</span>
         </Submit>
       )}
     </FormProvider>
   );
-};
+}
 export default FormilyForm;

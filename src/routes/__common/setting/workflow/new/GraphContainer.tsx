@@ -27,7 +27,7 @@ register({
             magnet: true,
             stroke: 'transparent',
             strokeWidth: 1,
-            fill: 'red',
+            fill: 'transparent',
           },
         },
       },
@@ -44,7 +44,7 @@ register({
             magnet: true,
             stroke: 'transparent',
             strokeWidth: 1,
-            fill: 'blue',
+            fill: 'transparent',
           },
         },
       },
@@ -148,9 +148,9 @@ const GraphContainer: FC<GraphContainerProps> = props => {
       //   eventTypes: ['leftMouseDown', 'mouseWheel'],
       // },
       autoResize: true,
-      // preventDefaultContextMenu: false,
+      preventDefaultContextMenu: false,
       // 节点可拖拽
-      // interacting: false,
+      interacting: false,
       // mousewheel: {
       //   enabled: true,
       //   modifiers: 'ctrl',
@@ -240,7 +240,7 @@ const GraphContainer: FC<GraphContainerProps> = props => {
   }, [getGarphApi]);
 
   return (
-    <div style={{ height: 300, ...style }}>
+    <div style={{ height: '100%', ...style }}>
       <div ref={divRef} />
     </div>
   );

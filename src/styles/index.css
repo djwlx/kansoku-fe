@@ -33,3 +33,11 @@ p {
   height: 16px;
   width: 16px;
 }
+
+.x6-node-selected .graph-node {
+  border-color: #3471f9 !important;
+  transition: 0.5s;
+}
+h3 {
+  margin: 0;
+}
