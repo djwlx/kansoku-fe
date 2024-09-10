@@ -220,7 +220,7 @@ const GraphContainer: FC<GraphContainerProps> = props => {
     });
     graph.use(
       new Selection({
-        multiple: true,
+        // multiple: true,
         rubberEdge: true,
         rubberNode: true,
         modifiers: 'shift',

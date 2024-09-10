@@ -6,6 +6,7 @@ import { getEdgesAndNodes } from './utils';
 import { processSettingConfig, stepConfig } from './config';
 import BaseInfo from './BaseInfo';
 import PageContainer from '@/components/PageContainer';
+import { FormilyForm } from '@/components';
 
 const testData = [
   {
@@ -38,6 +39,7 @@ const WorkFlowEdit: FC = () => {
   const [graph, setGraph] = useState<Graph>();
   const [graphWidth, setGraphWidth] = useState<string | number>('100%');
   const [stepIndex, setStepIndex] = useState(0);
+  const [selectNode, setSelectNode] = useState(0);
 
   // 计算
   const getWidth = () => {
@@ -63,7 +65,7 @@ const WorkFlowEdit: FC = () => {
     }
     const useData = getEdgesAndNodes(testData);
     graph.fromJSON(useData);
-    graph.select('node-0');
+    graph.select(`node-${selectNode}`);
   }, [graph]);
 
   return (
@@ -100,7 +102,27 @@ const WorkFlowEdit: FC = () => {
             </div>
           </div>
 
-          <div>form</div>
+          <div>
+            <FormilyForm
+              submitText="下一步"
+              schema={{
+                name: {
+                  type: 'string',
+                  title: '任务名称',
+                  required: true,
+                  'x-decorator': 'FormItem',
+                  'x-component': 'Input',
+                },
+              }}
+              onSubmit={val => {
+                console.log(val, 'nodeValue');
+                graph?.unselect(`node-${selectNode}`);
+                const nextNodeIndex = selectNode + 1;
+                setSelectNode(nextNodeIndex);
+                graph?.select(`node-${nextNodeIndex}`);
+              }}
+            />
+          </div>
         </>
       )}
     </PageContainer>
