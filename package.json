@@ -35,6 +35,7 @@
     "@formily/react": "^2.3.2",
     "@formily/semi": "^1.0.3",
     "@modern-js/runtime": "2.53.0",
+    "@semi-bot/semi-theme-kansoku": "^1.0.0",
     "axios": "^1.7.2",
     "classnames": "^2.5.1",
     "lodash-es": "^4.17.21",
@@ -42,6 +43,7 @@
     "react-dom": "~18.2.0"
   },
   "devDependencies": {
+    "@douyinfe/semi-webpack-plugin": "^2.65.0",
     "@modern-js-app/eslint-config": "2.53.0",
     "@modern-js/app-tools": "2.53.0",
     "@modern-js/eslint-config": "2.53.0",

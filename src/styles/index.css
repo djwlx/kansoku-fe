@@ -35,7 +35,7 @@ p {
 }
 
 .x6-node-selected .graph-node {
-  border-color: #3471f9 !important;
+  border-color: var(--kansoku-primary-color) !important;
   transition: 0.5s;
 }
 h3 {

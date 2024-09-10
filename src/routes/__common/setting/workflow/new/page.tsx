@@ -1,10 +1,10 @@
 import { FC, useEffect, useState } from 'react';
 import { Graph } from '@antv/x6';
 import { Steps } from '@douyinfe/semi-ui';
-import GraphContainer from './GraphContainer';
+import GraphContainer from './components/GraphContainer';
 import { getEdgesAndNodes } from './utils';
 import { processSettingConfig, stepConfig } from './config';
-import BaseInfo from './BaseInfo';
+import BaseInfo from './components/BaseInfo';
 import PageContainer from '@/components/PageContainer';
 import { FormilyForm } from '@/components';
 
