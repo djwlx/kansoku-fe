@@ -9,15 +9,15 @@ import {
 import { ColumnProps } from '@douyinfe/semi-ui/lib/es/table';
 import { IconDelete, IconEdit } from '@douyinfe/semi-icons';
 import { useNavigate } from '@modern-js/runtime/router';
+import { useModalHook } from 'djwl-module';
 import EditWorkFlow from './EditWorkFlow';
 import useSettingConfig from '@/hooks/useSettingConfig';
-import useModalHook from '@/hooks/useModalHook';
 import {
   addProviderConfig,
   deleteProviderConfig,
   updateProviderConfig,
 } from '@/services/setting';
-import useConfigEnum from '@/hooks/useConfigEnum';
+import { useConfigEnum } from '@/hooks';
 import { renderMap } from '@/utils/render';
 
 function WorkFlowSetting() {

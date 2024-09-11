@@ -1,6 +1,6 @@
 import { Steps, Form } from '@douyinfe/semi-ui';
 import styles from './index.module.scss';
-import useConfigEnum from '@/hooks/useConfigEnum';
+import { useConfigEnum } from '@/hooks';
 
 const { Select, InputNumber } = Form;
 function SourceDownalod() {

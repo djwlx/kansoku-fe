@@ -10,7 +10,7 @@ interface OptionItem {
 interface ConfigMap {
   [key: string]: OptionItem[];
 }
-const useConfigEnum = () => {
+export const useConfigEnum = () => {
   const [configMap, setConfigMap] = useState<ConfigMap>({} as ConfigMap);
 
   useEffect(() => {
@@ -25,5 +25,3 @@ const useConfigEnum = () => {
     configMap,
   };
 };
-
-export default useConfigEnum;

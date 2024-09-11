@@ -9,10 +9,10 @@ import {
 import { useEffect, useState } from 'react';
 import { SideSheet, Space } from '@douyinfe/semi-ui';
 import { useModel } from '@modern-js/runtime/model';
+import { useModalHook } from 'djwl-module';
 import styles from './index.module.scss';
 import Menu from '@/components/Menu';
 import { ENV } from '@/utils/env';
-import useModalHook from '@/hooks/useModalHook';
 import configModel from '@/model/config';
 
 export default function Layout() {

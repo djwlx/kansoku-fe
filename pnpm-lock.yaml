@@ -24,6 +24,7 @@ specifiers:
   '@types/react-dom': ~18.0.10
   axios: ^1.7.2
   classnames: ^2.5.1
+  djwl-module: ^1.0.4
   husky: ~8.0.1
   lint-staged: ~13.1.0
   lodash-es: ^4.17.21
@@ -47,6 +48,7 @@ dependencies:
   '@semi-bot/semi-theme-kansoku': registry.npmmirror.com/@semi-bot/semi-theme-kansoku/1.0.1
   axios: 1.7.2
   classnames: 2.5.1
+  djwl-module: registry.npmmirror.com/djwl-module/1.0.4_react-dom@18.2.0+react@18.2.0
   lodash-es: 4.17.21
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -10096,6 +10098,19 @@ packages:
     dependencies:
       ms: registry.npmmirror.com/ms/2.1.2
       supports-color: 5.5.0
+    dev: false
+
+  registry.npmmirror.com/djwl-module/1.0.4_react-dom@18.2.0+react@18.2.0:
+    resolution: {integrity: sha512-9y262VTV1/G2OlO+emAYfDjjS2O4f82UK6CxOn4xFaqGlrL8BRHf0SrC6N1xYGUkOCaCOoM6/uPb84VJG2SxVA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/djwl-module/-/djwl-module-1.0.4.tgz}
+    id: registry.npmmirror.com/djwl-module/1.0.4
+    name: djwl-module
+    version: 1.0.4
+    peerDependencies:
+      react: ^17.0.0
+      react-dom: ^17.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   registry.npmmirror.com/emojis-list/3.0.0:

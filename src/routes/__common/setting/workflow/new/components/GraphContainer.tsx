@@ -2,8 +2,8 @@ import { Cell, Graph, Path } from '@antv/x6';
 import { FC, useEffect, useRef } from 'react';
 import { register } from '@antv/x6-react-shape';
 import { Selection } from '@antv/x6-plugin-selection';
-import ProcessNode from './ProcessNode';
 import { processSettingConfig } from '../config';
+import ProcessNode from './ProcessNode';
 
 // 需要注册的元素
 // 节点组件

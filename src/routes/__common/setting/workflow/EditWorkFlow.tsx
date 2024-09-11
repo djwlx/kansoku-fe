@@ -1,13 +1,13 @@
 import { Form, SideSheet, Button } from '@douyinfe/semi-ui';
 import type { FormApi as SFormApi } from '@douyinfe/semi-ui/lib/es/form';
 import { useEffect, useState } from 'react';
-import { EditModalProps } from '../download/EditModal';
+import { ModalHookProps } from 'djwl-module';
 import SourceDownalod from './SourceDownalod';
-import useConfigEnum from '@/hooks/useConfigEnum';
+import { useConfigEnum } from '@/hooks';
 import { ENV } from '@/utils/env';
 
 const { Select, Input, Switch } = Form;
-function EditWorkFlow(props: EditModalProps) {
+function EditWorkFlow(props: ModalHookProps & any) {
   const { visible, closeModal, data, onAdd, onEdit, keyArray = [] } = props;
   const useKeyArray = keyArray.filter(item => item !== data?.name);
   const [formApi, setFormApi] = useState<SFormApi>();
