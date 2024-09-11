@@ -25,13 +25,13 @@ const Index = () => {
       <div>
         <h3 style={{ marginBottom: 6 }}>
           Welcome to
-          <span style={{ color: 'var(--kansoku-primary-color)' }}>
+          <span style={{ color: 'var(--semi-color-primary)' }}>
             &nbsp;Kansoku
           </span>
         </h3>
-        <div style={{ color: 'var(--kansoku-grey-color)' }}>{version}</div>
+        <div style={{ color: 'var(--semi-color-text-2)' }}>{version}</div>
       </div>
-      <footer style={{ color: 'var(--kansoku-grey-color)' }}>
+      <footer style={{ color: 'var(--semi-color-text-2)' }}>
         此软件仅供学习和交流使用
       </footer>
     </div>

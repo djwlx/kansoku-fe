@@ -64,7 +64,7 @@ function SourceSetting() {
             <IconEdit
               style={{
                 cursor: 'pointer',
-                color: 'var(--kansoku-primary-color)',
+                color: 'var(--semi-color-primary)',
               }}
               onClick={() => setModalData('open', record)}
             />

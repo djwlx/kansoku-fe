@@ -1,3 +1,9 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
 html,
 body {
   padding: 0;
@@ -5,20 +11,14 @@ body {
   font-family: PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
   color: var(--semi-color-text-0);
   background-color: var(--semi-color-bg-0);
-
-  /* 变量 */
-  --kansoku-primary-color: var(--semi-color-secondary);
-  --kansoku-grey-color: rgba(28, 30, 35, 0.6);
 }
 
 p {
   margin: 0;
 }
 
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  box-sizing: border-box;
+h3 {
+  margin: 0;
 }
 
 /* 全局一些样式 */
@@ -35,9 +35,6 @@ p {
 }
 
 .x6-node-selected .graph-node {
-  border-color: var(--kansoku-primary-color) !important;
+  border-color: var(--semi-color-primary) !important;
   transition: 0.5s;
-}
-h3 {
-  margin: 0;
 }

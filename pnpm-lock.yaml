@@ -16,7 +16,7 @@ specifiers:
   '@modern-js/eslint-config': 2.53.0
   '@modern-js/runtime': 2.53.0
   '@modern-js/tsconfig': 2.53.0
-  '@semi-bot/semi-theme-kansoku': ^1.0.0
+  '@semi-bot/semi-theme-kansoku': ^1.0.1
   '@types/jest': ~29.2.4
   '@types/lodash-es': ^4.17.12
   '@types/node': ~16.11.7
@@ -44,7 +44,7 @@ dependencies:
   '@formily/react': 2.3.2_ad1d99b3c818e73349184551d21c0a10
   '@formily/semi': 1.0.3_5cf656561d595418e087bd237612a3ad
   '@modern-js/runtime': 2.53.0_8e70b46749da2f914bfa002f2c2020cc
-  '@semi-bot/semi-theme-kansoku': registry.npmmirror.com/@semi-bot/semi-theme-kansoku/1.0.0
+  '@semi-bot/semi-theme-kansoku': registry.npmmirror.com/@semi-bot/semi-theme-kansoku/1.0.1
   axios: 1.7.2
   classnames: 2.5.1
   lodash-es: 4.17.21
@@ -9843,10 +9843,10 @@ packages:
     dev: true
     optional: true
 
-  registry.npmmirror.com/@semi-bot/semi-theme-kansoku/1.0.0:
-    resolution: {integrity: sha512-+tT06N/igHscRkgDwb0K8zjS0phod7apUNaVjYyDkpDGMzizOH8fMPA4RU7GQtpuiEVcy61FmGwQTicwGiKyfg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@semi-bot/semi-theme-kansoku/-/semi-theme-kansoku-1.0.0.tgz}
+  registry.npmmirror.com/@semi-bot/semi-theme-kansoku/1.0.1:
+    resolution: {integrity: sha512-8CEgEc5MAS/+9fdv9ERtB2U0Mb+4q5qHSoQqgqafYQyXhlN7TGdwpvurvaehiNXvsEZbAZh9qiFtmOjDeUUaBA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@semi-bot/semi-theme-kansoku/-/semi-theme-kansoku-1.0.1.tgz}
     name: '@semi-bot/semi-theme-kansoku'
-    version: 1.0.0
+    version: 1.0.1
     dev: false
 
   registry.npmmirror.com/@types/json-schema/7.0.15:

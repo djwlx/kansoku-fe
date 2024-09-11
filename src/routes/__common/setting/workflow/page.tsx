@@ -101,7 +101,7 @@ function WorkFlowSetting() {
             <IconEdit
               style={{
                 cursor: 'pointer',
-                color: 'var(--kansoku-primary-color)',
+                color: 'var(--semi-color-primary)',
               }}
               onClick={() => setModalData('open', record)}
             />
@@ -112,7 +112,12 @@ function WorkFlowSetting() {
               okType="danger"
               onConfirm={() => onDelete(record)}
             >
-              <IconDelete style={{ cursor: 'pointer', color: 'red' }} />
+              <IconDelete
+                style={{
+                  cursor: 'pointer',
+                  color: 'rgba(var(--semi-red-5), 1)',
+                }}
+              />
             </Popconfirm>
           </Space>
         );
@@ -123,7 +128,7 @@ function WorkFlowSetting() {
   return (
     <div style={{ padding: 16 }}>
       <Button
-        type="secondary"
+        type="primary"
         theme="solid"
         onClick={() => {
           // setModalData('open')

@@ -89,7 +89,6 @@ const WorkFlowEdit: FC = () => {
                 height:
                   processSettingConfig.node.height +
                   processSettingConfig.padding * 2,
-                // backgroundColor: 'rgb(247, 248, 250)',
                 width: graphWidth,
               }}
             >

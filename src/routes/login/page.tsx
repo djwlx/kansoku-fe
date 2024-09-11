@@ -35,7 +35,7 @@ function Login() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: '#f5f5f9',
+        backgroundColor: 'var(--semi-color-fill-1)',
         justifyContent: 'center',
       }}
     >
@@ -47,15 +47,15 @@ function Login() {
           textAlign: 'center',
           padding: 16,
           margin: 16,
-          backgroundColor: '#fff',
-          boxShadow: 'rgba(0, 0, 0, 0.05) 0px 0.5rem 2rem',
+          backgroundColor: 'var(--semi-color-bg-0)',
+          boxShadow: 'var(--semi-color-shadow) 0px 0.5rem 2rem',
         }}
       >
         <header
           style={{
             fontSize: 20,
             fontWeight: 'bolder',
-            color: 'var(--kansoku-primary-color)',
+            color: 'var(--semi-color-primary)',
           }}
         >
           kansoku
