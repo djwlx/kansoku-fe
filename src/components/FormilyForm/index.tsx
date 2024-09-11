@@ -17,7 +17,7 @@ function FormilyForm(props: FormilyFormProps) {
     getFormInstance,
     onSubmit,
     initValues,
-    submitText = '提交',
+    submitText = '保存',
   } = props;
   const form = useMemo(() => createForm(), []);
 
@@ -55,7 +55,7 @@ function FormilyForm(props: FormilyFormProps) {
     <FormProvider form={form}>
       <SchemaField schema={useSchema} />
       {onSubmit && (
-        <Submit onSubmit={onSubmit}>
+        <Submit theme="solid" onSubmit={onSubmit}>
           <span>{submitText}</span>
         </Submit>
       )}

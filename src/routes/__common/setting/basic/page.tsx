@@ -10,7 +10,7 @@ function BasicSetting() {
   const submitAction = async (values: any) => {
     const result = await updateCommonConfig(values);
     if (result.data?.code === 200) {
-      Toast.success('修改成功');
+      Toast.success('保存成功');
     }
   };
 

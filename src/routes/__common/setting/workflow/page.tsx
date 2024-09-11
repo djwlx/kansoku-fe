@@ -67,7 +67,7 @@ function WorkFlowSetting() {
       dataIndex: 'type',
       width: 200,
       render: (text: string) => {
-        return renderMap.optionRender(text, configMap.workflow_type);
+        return renderMap.optionRender(text, configMap.workflow_provider_type);
       },
     },
     {
