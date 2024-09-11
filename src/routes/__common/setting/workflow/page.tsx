@@ -115,7 +115,7 @@ function WorkFlowSetting() {
               <IconDelete
                 style={{
                   cursor: 'pointer',
-                  color: 'rgba(var(--semi-red-5), 1)',
+                  color: 'var(--semi-color-danger)',
                 }}
               />
             </Popconfirm>

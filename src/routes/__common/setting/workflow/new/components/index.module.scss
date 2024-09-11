@@ -1,14 +1,14 @@
 .node {
-  border: 2px solid rgb(229, 230, 235, 1);
-  background-color: #fff;
+  border: 2px solid var(--semi-color-border);
+  background-color: var(--semi-color-bg-0);
   border: 2px solid transparent;
-  box-shadow: 0 -1px 4px 0 rgba(209, 209, 209, 50%),
-    1px 1px 4px 0 rgba(217, 217, 217, 50%);
+  box-shadow: 0 -1px 4px 0 var(--semi-color-fill-1),
+    1px 1px 4px 0 var(--semi-color-fill-2);
   padding: 16px;
   transition: 0.5s;
   &:hover {
     border: 2px solid rgba(0, 0, 0, 10%);
-    box-shadow: 0 -2px 4px 0 rgba(209, 209, 209, 50%),
-      2px 2px 4px 0 rgba(217, 217, 217, 50%);
+    box-shadow: 0 -2px 4px 0 var(--semi-color-fill-1),
+      2px 2px 4px 0 var(--semi-color-fill-2);
   }
 }

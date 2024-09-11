@@ -75,7 +75,12 @@ function SourceSetting() {
               okType="danger"
               onConfirm={() => onDelete(record)}
             >
-              <IconDelete style={{ cursor: 'pointer', color: 'red' }} />
+              <IconDelete
+                style={{
+                  cursor: 'pointer',
+                  color: 'var(--semi-color-danger)',
+                }}
+              />
             </Popconfirm>
           </Space>
         );
