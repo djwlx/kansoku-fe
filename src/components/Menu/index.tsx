@@ -33,6 +33,10 @@ function Menu(props: MenuProps) {
             text: '配置模板',
           },
           {
+            itemKey: '/setting/template2',
+            text: '配置模板2',
+          },
+          {
             itemKey: '/setting/workflow',
             text: '工作流',
           },

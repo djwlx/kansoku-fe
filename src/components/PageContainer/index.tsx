@@ -1,4 +1,5 @@
-import { isNumber, isString } from 'lodash-es';
+import isNumber from 'lodash-es/isNumber';
+import isString from 'lodash-es/isString';
 import { CSSProperties, ReactNode, useMemo } from 'react';
 
 interface PageContainerProps {

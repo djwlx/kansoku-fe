@@ -69,5 +69,8 @@ export const getInfo = () => {
 };
 
 export const testSchema = () => {
-  return request.get('/api/v1/view/test');
+  return request.get('/api/v2/schema/taskflow');
+};
+export const testSchema2 = () => {
+  return request.get('/api/v2/schema/provider/download_provider');
 };
