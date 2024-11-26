@@ -3,7 +3,6 @@ import type { FormApi as SFormApi } from '@douyinfe/semi-ui/lib/es/form';
 import { useEffect, useState } from 'react';
 import { ModalHookProps } from 'djwl-module';
 import SourceDownalod from './SourceDownalod';
-import { useConfigEnum } from '@/hooks';
 import { ENV } from '@/utils/env';
 
 const { Select, Input, Switch } = Form;
@@ -11,7 +10,6 @@ function EditWorkFlow(props: ModalHookProps & any) {
   const { visible, closeModal, data, onAdd, onEdit, keyArray = [] } = props;
   const useKeyArray = keyArray.filter(item => item !== data?.name);
   const [formApi, setFormApi] = useState<SFormApi>();
-  const { configMap } = useConfigEnum();
   const isEdit = Boolean(data);
   const [hasSameName, setHasSameName] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -68,7 +66,7 @@ function EditWorkFlow(props: ModalHookProps & any) {
                 label="工作流类型"
                 showClear
                 rules={[{ required: true }]}
-                optionList={configMap.workflow_type}
+                optionList={[]}
               />
               {values.type === 'source_download' && <SourceDownalod />}
               <Switch initValue={true} field="enable" label="是否启用" />

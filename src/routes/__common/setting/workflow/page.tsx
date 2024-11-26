@@ -1,60 +1,21 @@
-import {
-  Button,
-  Popconfirm,
-  Space,
-  Switch,
-  Table,
-  Toast,
-} from '@douyinfe/semi-ui';
+import { Button, Popconfirm, Space, Switch } from '@douyinfe/semi-ui';
 import { ColumnProps } from '@douyinfe/semi-ui/lib/es/table';
 import { IconDelete, IconEdit } from '@douyinfe/semi-icons';
 import { useNavigate } from '@modern-js/runtime/router';
 import { useModalHook } from 'djwl-module';
 import EditWorkFlow from './EditWorkFlow';
-import useSettingConfig from '@/hooks/useSettingConfig';
-import {
-  addProviderConfig,
-  deleteProviderConfig,
-  updateProviderConfig,
-} from '@/services/setting';
-import { useConfigEnum } from '@/hooks';
 import { renderMap } from '@/utils/render';
 
 function WorkFlowSetting() {
-  const { setting, fetchData } = useSettingConfig({ type: 'workflow' });
-  const workflowList = setting?.workflow || [];
-  const keyArray = workflowList.map((item: any) => item.name);
   const { setModalData, closeModal, ...rest } = useModalHook();
-  const { configMap } = useConfigEnum();
   const navigate = useNavigate();
+  const configMap = {};
 
-  const onDelete = async (item: any) => {
-    const result = await deleteProviderConfig('workflow', item.id);
-    if (result.data?.code === 200) {
-      Toast.success('删除成功');
-      fetchData();
-      closeModal();
-    }
-  };
+  const onDelete = async (item: any) => {};
 
-  const onEdit = async (id: string, item: any) => {
-    const param = { id, ...item };
-    const result = await updateProviderConfig('workflow', param);
-    if (result.data?.code === 200) {
-      Toast.success('修改成功');
-      fetchData();
-      closeModal();
-    }
-  };
+  const onEdit = async (id: string, item: any) => {};
 
-  const onAdd = async (item: any) => {
-    const result = await addProviderConfig('workflow', item);
-    if (result.data?.code === 200) {
-      Toast.success('添加成功');
-      fetchData();
-      closeModal();
-    }
-  };
+  const onAdd = async (item: any) => {};
 
   const columns: ColumnProps[] = [
     {
@@ -137,16 +98,16 @@ function WorkFlowSetting() {
       >
         添加工作流
       </Button>
-      <Table
+      {/* <Table
         style={{ marginTop: 16 }}
         scroll={{ x: '100%' }}
         columns={columns}
         rowKey="id"
         dataSource={workflowList}
         pagination={false}
-      />
+      /> */}
       <EditWorkFlow
-        keyArray={keyArray}
+        keyArray={[]}
         onAdd={onAdd}
         onEdit={onEdit}
         closeModal={closeModal}

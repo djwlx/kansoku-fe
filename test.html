@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>标题</title>
+  </head>
+  <body></body>
+  <script>
+    fetch('http://127.0.0.1:8419/api/v2/provider')
+      .then(res => res.json())
+      .then(res => console.log(res));
+  </script>
+</html>

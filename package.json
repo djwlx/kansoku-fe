@@ -39,7 +39,7 @@
     "axios": "^1.7.2",
     "classnames": "^2.5.1",
     "djwl-module": "^1.0.4",
-    "lodash-es": "^4.17.21",
+    "es-toolkit": "^1.27.0",
     "react": "~18.2.0",
     "react-dom": "~18.2.0"
   },
@@ -50,7 +50,6 @@
     "@modern-js/eslint-config": "2.53.0",
     "@modern-js/tsconfig": "2.53.0",
     "@types/jest": "~29.2.4",
-    "@types/lodash-es": "^4.17.12",
     "@types/node": "~16.11.7",
     "@types/react": "~18.0.26",
     "@types/react-dom": "~18.0.10",

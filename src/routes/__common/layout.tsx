@@ -77,7 +77,12 @@ export default function Layout() {
       <div style={{ display: 'flex' }}>
         {device === 'pc' && <Menu style={{ height: 'calc(100vh - 60px)' }} />}
         <main
-          style={{ flex: 1, overflow: 'auto', height: 'calc(100vh - 60px)' }}
+          style={{
+            flex: 1,
+            overflow: 'auto',
+            height: 'calc(100vh - 60px)',
+            padding: 16,
+          }}
         >
           <Outlet />
         </main>

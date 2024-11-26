@@ -29,13 +29,13 @@ function Menu(props: MenuProps) {
             text: '基本设置',
           },
           {
-            itemKey: '/setting/template',
-            text: '配置模板',
+            itemKey: '/setting/provider',
+            text: '节点预设',
           },
-          {
-            itemKey: '/setting/template2',
-            text: '配置模板2',
-          },
+          // {
+          //   itemKey: '/setting/template',
+          //   text: '配置模板',
+          // },
           {
             itemKey: '/setting/workflow',
             text: '工作流',

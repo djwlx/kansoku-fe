@@ -1,12 +1,10 @@
 import axios from 'axios';
 import { Toast } from '@douyinfe/semi-ui';
-import cloneDeep from 'lodash-es/cloneDeep';
 import { ENV } from './env';
-// windows中这样使用lodash-es报错
-// import { cloneDeep } from 'lodash-es';
+import { cloneDeep } from 'es-toolkit';
 
 const request = axios.create({
-  baseURL: ENV.isProd ? undefined : 'http://127.0.0.1:8419',
+  baseURL: ENV.isProd ? '/api/v2' : 'http://127.0.0.1:8419/api/v2',
 });
 
 request.interceptors.request.use(config => {
@@ -24,11 +22,13 @@ request.interceptors.response.use(
     return response;
   },
   error => {
-    const { response } = error;
-    if (response.status === 401) {
+    const { response, message } = error;
+    if (response?.status === 401) {
       localStorage.removeItem('token');
       const path = window.location.pathname;
       window.location.href = `/login?redirect=${path}`;
+    } else if (message) {
+      Toast.error(message);
     } else {
       const msg = response.data?.message;
       if (msg) {

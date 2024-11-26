@@ -1,5 +1,5 @@
+import { getInfo } from '@/services/common';
 import { useEffect, useState } from 'react';
-import { getInfo } from '@/services/setting';
 
 const Index = () => {
   const [version, setVersion] = useState('');

@@ -2,8 +2,8 @@ import { Form, Button, Toast } from '@douyinfe/semi-ui';
 import type { FormApi as SFormApi } from '@douyinfe/semi-ui/lib/es/form';
 import { useState } from 'react';
 import { useNavigate } from '@modern-js/runtime/router';
-import { login } from '@/services/user';
 import { ENV } from '@/utils/env';
+import { login } from '@/services/common';
 
 const { Input } = Form;
 function Login() {

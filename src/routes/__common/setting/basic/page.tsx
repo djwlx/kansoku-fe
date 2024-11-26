@@ -1,8 +1,8 @@
 import { Toast } from '@douyinfe/semi-ui';
 import basicSchema from './schema';
-import useSettingConfig from '@/hooks/useSettingConfig';
-import { updateCommonConfig } from '@/services/setting';
 import FormilyForm from '@/components/FormilyForm';
+import { updateCommonConfig } from '@/services/config';
+import { useSettingConfig } from '@/hooks';
 
 function BasicSetting() {
   const { setting } = useSettingConfig({ type: 'common' });
@@ -15,7 +15,7 @@ function BasicSetting() {
   };
 
   return (
-    <div style={{ padding: 16 }}>
+    <div>
       <FormilyForm
         initValues={setting}
         schema={basicSchema}

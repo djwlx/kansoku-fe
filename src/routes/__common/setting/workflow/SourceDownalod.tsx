@@ -1,10 +1,10 @@
 import { Steps, Form } from '@douyinfe/semi-ui';
 import styles from './index.module.scss';
-import { useConfigEnum } from '@/hooks';
 
 const { Select, InputNumber } = Form;
 function SourceDownalod() {
-  const { configMap } = useConfigEnum();
+  const configMap = {};
+
   return (
     <>
       <Steps

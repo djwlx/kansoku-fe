@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Form } from '@formily/core';
 import { FormilyForm } from '@/components';
-import { getTaskFlowEnum } from '@/services/workflow';
 
 const schema = {
   name: {
@@ -34,11 +33,11 @@ function BaseInfo(props: BaseInfoProps) {
 
   useEffect(() => {
     if (form) {
-      getTaskFlowEnum().then(res => {
-        form.setFieldState('type', state => {
-          state.dataSource = res;
-        });
-      });
+      // getTaskFlowEnum().then(res => {
+      //   form.setFieldState('type', state => {
+      //     state.dataSource = res;
+      //   });
+      // });
     }
   }, [form]);
   return (
