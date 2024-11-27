@@ -38,7 +38,7 @@
     "@semi-bot/semi-theme-kansoku": "^1.0.1",
     "axios": "^1.7.2",
     "classnames": "^2.5.1",
-    "djwl-module": "^1.0.4",
+    "djwl-module": "^1.0.6",
     "es-toolkit": "^1.27.0",
     "react": "~18.2.0",
     "react-dom": "~18.2.0"

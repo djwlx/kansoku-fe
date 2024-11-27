@@ -10,6 +10,7 @@ interface FormilyFormProps {
   onSubmit?: (values: any) => void;
   initValues?: any;
   submitText?: string;
+  submitLoading?: boolean;
 }
 function FormilyForm(props: FormilyFormProps) {
   const {
@@ -18,6 +19,7 @@ function FormilyForm(props: FormilyFormProps) {
     onSubmit,
     initValues,
     submitText = '保存',
+    submitLoading,
   } = props;
   const form = useMemo(() => createForm(), []);
 
@@ -55,7 +57,7 @@ function FormilyForm(props: FormilyFormProps) {
     <FormProvider form={form}>
       <SchemaField schema={useSchema} />
       {onSubmit && (
-        <Submit theme="solid" onSubmit={onSubmit}>
+        <Submit theme="solid" loading={submitLoading} onSubmit={onSubmit}>
           <span>{submitText}</span>
         </Submit>
       )}
