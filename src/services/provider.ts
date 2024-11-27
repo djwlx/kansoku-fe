@@ -8,7 +8,7 @@ interface AllProviderParams {
 }
 // 获取节点预设列表
 export const getAllProvider = (params?: AllProviderParams) => {
-  return request.get('/provider/', {
+  return request.get('/provider', {
     params,
   });
 };
@@ -19,7 +19,7 @@ export const updateProvider = (data: any) => {
 };
 // 新增节点预设
 export const createProvider = (data: any) => {
-  return request.post('/provider/', data);
+  return request.post('/provider', data);
 };
 // 获取节点预设
 export const getProviderItem = (id: string) => {
