@@ -32,10 +32,6 @@ function Menu(props: MenuProps) {
             itemKey: '/setting/provider',
             text: '节点预设',
           },
-          // {
-          //   itemKey: '/setting/template',
-          //   text: '配置模板',
-          // },
           {
             itemKey: '/setting/workflow',
             text: '工作流',

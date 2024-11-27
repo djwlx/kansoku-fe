@@ -25,7 +25,6 @@ function PageContainer(props: PageContainerProps) {
     <div
       className={className}
       style={{
-        padding: 16,
         ...style,
       }}
     >

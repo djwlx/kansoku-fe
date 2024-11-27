@@ -1,7 +1,7 @@
 import { FormProvider, ISchema } from '@formily/react';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, ReactNode } from 'react';
 import { createForm } from '@formily/core';
-import { SchemaField, Submit } from '@formily/semi';
+import { SchemaField, Space, Submit } from '@formily/semi';
 import { DSchema } from '@/utils/formily';
 
 interface FormilyFormProps {
@@ -11,6 +11,7 @@ interface FormilyFormProps {
   initValues?: any;
   submitText?: string;
   submitLoading?: boolean;
+  submitExtra?: ReactNode;
 }
 function FormilyForm(props: FormilyFormProps) {
   const {
@@ -20,6 +21,7 @@ function FormilyForm(props: FormilyFormProps) {
     initValues,
     submitText = '保存',
     submitLoading,
+    submitExtra,
   } = props;
   const form = useMemo(() => createForm(), []);
 
@@ -56,11 +58,14 @@ function FormilyForm(props: FormilyFormProps) {
   return (
     <FormProvider form={form}>
       <SchemaField schema={useSchema} />
-      {onSubmit && (
-        <Submit theme="solid" loading={submitLoading} onSubmit={onSubmit}>
-          <span>{submitText}</span>
-        </Submit>
-      )}
+      <Space>
+        {submitExtra}
+        {onSubmit && (
+          <Submit theme="solid" loading={submitLoading} onSubmit={onSubmit}>
+            <span>{submitText}</span>
+          </Submit>
+        )}
+      </Space>
     </FormProvider>
   );
 }

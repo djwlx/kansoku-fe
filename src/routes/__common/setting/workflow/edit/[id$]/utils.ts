@@ -1,5 +1,6 @@
 import { Model } from '@antv/x6';
-import { processSettingConfig } from './config';
+import { processSettingConfig, ProgressData } from './config';
+import { v4 as UUID } from 'uuid';
 
 export const getEdgesAndNodes = (data: any) => {
   const result: Model.FromJSONData = {
@@ -53,6 +54,29 @@ export const getEdgesAndNodes = (data: any) => {
     }
     result.nodes!.push(useNode);
   });
+
+  return result;
+};
+
+export const parseData: ProgressData | any = (data: any) => {
+  if (!data) {
+    return {};
+  }
+  const { type, enable, name, flows } = data;
+
+  const result = {
+    basic: {
+      type,
+      enable,
+      name,
+    },
+    flows: flows?.map((item: any) => {
+      return {
+        ...item,
+        front_uid: UUID(),
+      };
+    }),
+  };
 
   return result;
 };

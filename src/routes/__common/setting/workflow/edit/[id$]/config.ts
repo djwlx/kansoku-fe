@@ -8,7 +8,15 @@ export const processSettingConfig = {
   edgeShape: 'process-edge',
   connectorShape: 'process-connector',
 };
-
+export type ProgressType = 'basic' | 'progress';
+export interface ProgressData {
+  basic?: {
+    type?: string;
+    enable?: string;
+    name?: string;
+  };
+  flows?: any[];
+}
 // 按照顺序
 export const stepConfig = [
   {

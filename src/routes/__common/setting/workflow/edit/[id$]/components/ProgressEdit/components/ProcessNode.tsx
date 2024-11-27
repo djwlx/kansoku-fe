@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Graph, Node } from '@antv/x6';
 import classNames from 'classnames';
-import styles from './index.module.scss';
+import styles from '../index.module.scss';
 
 interface ProcessNodeProps {
   node: Node;
