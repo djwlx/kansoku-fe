@@ -2,12 +2,17 @@ import { Model } from '@antv/x6';
 import { processSettingConfig, ProgressData } from './config';
 import { v4 as UUID } from 'uuid';
 
-export const getEdgesAndNodes = (data: any) => {
+export type FlowData = {
+  front_id: string;
+  [s: string]: any;
+}[];
+
+export const getEdgesAndNodes = (data: FlowData) => {
   const result: Model.FromJSONData = {
     nodes: [],
     edges: [],
   };
-  data?.forEach((nodeItem: any, index: number) => {
+  data?.forEach((nodeItem, index: number) => {
     const useNode = {
       id: `node-${index}`,
       shape: processSettingConfig.node.shape,

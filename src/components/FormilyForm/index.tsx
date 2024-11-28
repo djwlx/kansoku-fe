@@ -1,4 +1,4 @@
-import { FormProvider, ISchema } from '@formily/react';
+import { FormProvider, ISchema, useFormEffects } from '@formily/react';
 import { useEffect, useMemo, ReactNode } from 'react';
 import { createForm } from '@formily/core';
 import { SchemaField, Space, Submit } from '@formily/semi';
@@ -46,6 +46,12 @@ function FormilyForm(props: FormilyFormProps) {
     };
 
     return layoutSchema;
+  }, [schema]);
+
+  useEffect(() => {
+    form.reset();
+    form.onUnmount();
+    form.onMount();
   }, [schema]);
 
   useEffect(() => {

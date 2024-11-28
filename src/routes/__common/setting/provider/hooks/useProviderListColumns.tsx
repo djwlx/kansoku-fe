@@ -41,7 +41,6 @@ function useProviderListColumns(params: ColumnParams) {
       dataIndex: 'operator',
       fixed: 'right',
       render: (text: boolean, record) => {
-        console.log(record);
         return (
           <Space>
             <IconEdit

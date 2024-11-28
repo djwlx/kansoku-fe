@@ -12,7 +12,7 @@ export type StepFuncType = (type: ProgressType, value: any) => void;
 
 const WorkFlowEdit: FC = () => {
   const { id } = useParams();
-  const [stepIndex, setStepIndex] = useState(0);
+  const [stepIndex, setStepIndex] = useState(1);
   const [progressData, setProgressData] = useState<ProgressData>({});
   const message = Boolean(id) ? '编辑任务流' : '添加任务流';
 
@@ -21,6 +21,12 @@ const WorkFlowEdit: FC = () => {
       setProgressData({
         ...progressData,
         basic: value,
+      });
+    }
+    if (type === 'flows') {
+      setProgressData({
+        ...progressData,
+        flows: value,
       });
     }
   };
@@ -59,7 +65,11 @@ const WorkFlowEdit: FC = () => {
         ))}
       </Steps>
       {stepIndex === 0 && (
-        <BaseInfo initValue={progressData.basic} next={nextStep} />
+        <BaseInfo
+          initValue={progressData.basic}
+          next={nextStep}
+          saveData={saveData}
+        />
       )}
       {stepIndex === 1 && (
         <ProgressEdit

@@ -27,13 +27,13 @@ request.interceptors.response.use(
       localStorage.removeItem('token');
       const path = window.location.pathname;
       window.location.href = `/login?redirect=${path}`;
-    } else if (message) {
-      Toast.error(message);
-    } else {
+    } else if (response.data?.message) {
       const msg = response.data?.message;
       if (msg) {
         Toast.error(msg);
       }
+    } else if (message) {
+      Toast.error(message);
     }
   },
 );

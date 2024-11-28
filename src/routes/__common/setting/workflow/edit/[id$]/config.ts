@@ -8,7 +8,7 @@ export const processSettingConfig = {
   edgeShape: 'process-edge',
   connectorShape: 'process-connector',
 };
-export type ProgressType = 'basic' | 'progress';
+export type ProgressType = 'basic' | 'flows';
 export interface ProgressData {
   basic?: {
     type?: string;

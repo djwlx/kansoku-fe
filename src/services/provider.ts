@@ -8,18 +8,18 @@ interface AllProviderParams {
 }
 // 获取节点预设列表
 export const getAllProvider = (params?: AllProviderParams) => {
-  return request.get('/provider', {
+  return request.get('/provider/', {
     params,
   });
 };
 
 // 修改节点预设
 export const updateProvider = (data: any) => {
-  return request.put('/provider', data);
+  return request.put('/provider/', data);
 };
 // 新增节点预设
 export const createProvider = (data: any) => {
-  return request.post('/provider', data);
+  return request.post('/provider/', data);
 };
 // 获取节点预设
 export const getProviderItem = (id: string) => {
@@ -27,5 +27,5 @@ export const getProviderItem = (id: string) => {
 };
 // 删除节点预设
 export const deleteProvider = (ids: string) => {
-  return request.delete(`/provider`, { params: { ids } });
+  return request.delete(`/provider/`, { params: { ids } });
 };

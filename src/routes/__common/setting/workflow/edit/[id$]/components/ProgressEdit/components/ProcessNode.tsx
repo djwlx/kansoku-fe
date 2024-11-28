@@ -10,8 +10,6 @@ interface ProcessNodeProps {
 const ProcessNode: FC<ProcessNodeProps> = props => {
   const { node, graph } = props;
 
-  console.log(graph, 'graph');
-
   return (
     <div
       style={{ width: 200, height: 100 }}

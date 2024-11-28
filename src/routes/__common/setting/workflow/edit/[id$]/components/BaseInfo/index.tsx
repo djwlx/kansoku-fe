@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Form } from '@formily/core';
+import { Form, onFieldInputValueChange } from '@formily/core';
 import { FormilyForm } from '@/components';
 import { useTaskFlowType } from '@/hooks';
-import { StepFuncType } from '../page';
+import { v4 as UUID } from 'uuid';
+
 import { DSchema } from '@/utils/formily';
+import { StepFuncType } from '../../page';
 
 const schema: DSchema = {
   name: {
@@ -29,10 +31,11 @@ const schema: DSchema = {
 };
 interface BaseInfoProps {
   next: StepFuncType;
+  saveData?: StepFuncType;
   initValue?: any;
 }
 function BaseInfo(props: BaseInfoProps) {
-  const { next, initValue } = props;
+  const { next, initValue, saveData } = props;
   const [form, setForm] = useState<Form>();
   const { taskTypeList } = useTaskFlowType();
 
@@ -45,6 +48,30 @@ function BaseInfo(props: BaseInfoProps) {
       }
     }
   }, [form, taskTypeList]);
+
+  useEffect(() => {
+    if (form) {
+      form.addEffects('typeChange', () => {
+        onFieldInputValueChange('type', field => {
+          const sourceList = field.dataSource || [];
+          const flowList =
+            sourceList.find(item => item.value === field.value)?.flows || [];
+          const useFlow = flowList.map((item: any) => {
+            return {
+              ...item,
+              front_uid: UUID(),
+            };
+          });
+          saveData?.('flows', useFlow);
+        });
+      });
+    }
+    return () => {
+      if (form) {
+        form.removeEffects('typeChange');
+      }
+    };
+  }, [form]);
 
   return (
     <div style={{ marginTop: 16 }}>

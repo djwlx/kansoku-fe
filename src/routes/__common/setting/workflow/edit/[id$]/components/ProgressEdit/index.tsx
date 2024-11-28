@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 import { processSettingConfig, ProgressData } from '../../config';
 import { getEdgesAndNodes } from '../../utils';
 import GraphContainer from './components/GraphContainer';
-import { FormilyForm } from '@/components';
+import { FormilyForm, StepNode } from '@/components';
 import { Button } from '@douyinfe/semi-ui';
 import { StepFuncType } from '../../page';
+import ProcessForm from './components/ProcessForm';
 
 interface ProgressEditProps {
   next: StepFuncType;
@@ -14,12 +15,12 @@ interface ProgressEditProps {
 }
 function ProgressEdit(props: ProgressEditProps) {
   const { next, previous, progressData } = props;
+  const flows = progressData?.flows || [];
   const [graph, setGraph] = useState<Graph>();
   const [graphWidth, setGraphWidth] = useState<string | number>('100%');
-  const [selectNode, setSelectNode] = useState(0);
+  const [selectNode, setSelectNode] = useState();
 
-  console.log(progressData, 'DDDD');
-  const flows = progressData?.flows || [];
+  console.log(flows, 'flows');
 
   // 计算
   const getWidth = () => {
@@ -40,12 +41,12 @@ function ProgressEdit(props: ProgressEditProps) {
     }
     const useData = getEdgesAndNodes(flows);
     graph.fromJSON(useData);
-    graph.select(`node-${selectNode}`);
+    graph.select('node-0');
   }, [graph]);
 
   return (
     <>
-      <div style={{ width: '100%', overflow: 'auto' }}>
+      {/* <div style={{ width: '100%', overflow: 'auto' }}>
         <div
           style={{
             height:
@@ -56,42 +57,16 @@ function ProgressEdit(props: ProgressEditProps) {
         >
           <GraphContainer
             onSelect={e => {
-              console.log(e, 'ee');
+              if (e?.shape === processSettingConfig.node.shape) {
+                setSelectNode(e.data);
+              }
             }}
             getGarphApi={setGraph}
           />
         </div>
-      </div>
-
-      <div>
-        <FormilyForm
-          submitExtra={
-            <Button
-              theme="solid"
-              onClick={() => previous('progress', undefined)}
-            >
-              上一步
-            </Button>
-          }
-          submitText="下一步"
-          schema={{
-            name: {
-              type: 'string',
-              title: '任务名称',
-              required: true,
-              'x-decorator': 'FormItem',
-              'x-component': 'Input',
-            },
-          }}
-          onSubmit={val => {
-            console.log(val, 'nodeValue');
-            graph?.unselect(`node-${selectNode}`);
-            const nextNodeIndex = selectNode + 1;
-            setSelectNode(nextNodeIndex);
-            graph?.select(`node-${nextNodeIndex}`);
-          }}
-        />
-      </div>
+      </div> */}
+      <StepNode />
+      <ProcessForm currentNode={selectNode} />
     </>
   );
 }
