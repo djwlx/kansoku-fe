@@ -7,6 +7,7 @@ import { FormilyForm, StepNode } from '@/components';
 import { Button } from '@douyinfe/semi-ui';
 import { StepFuncType } from '../../page';
 import ProcessForm from './components/ProcessForm';
+import ProcessNode from './components/ProcessNode';
 
 interface ProgressEditProps {
   next: StepFuncType;
@@ -16,33 +17,33 @@ interface ProgressEditProps {
 function ProgressEdit(props: ProgressEditProps) {
   const { next, previous, progressData } = props;
   const flows = progressData?.flows || [];
-  const [graph, setGraph] = useState<Graph>();
-  const [graphWidth, setGraphWidth] = useState<string | number>('100%');
+  // const [graph, setGraph] = useState<Graph>();
+  // const [graphWidth, setGraphWidth] = useState<string | number>('100%');
   const [selectNode, setSelectNode] = useState();
 
   console.log(flows, 'flows');
 
-  // 计算
-  const getWidth = () => {
-    const len = flows.length;
-    const useLen =
-      processSettingConfig.padding * (len + 1) +
-      processSettingConfig.node.width * len;
-    setGraphWidth(useLen);
-  };
+  // // 计算
+  // const getWidth = () => {
+  //   const len = flows.length;
+  //   const useLen =
+  //     processSettingConfig.padding * (len + 1) +
+  //     processSettingConfig.node.width * len;
+  //   setGraphWidth(useLen);
+  // };
 
-  useEffect(() => {
-    getWidth();
-  }, [flows]);
+  // useEffect(() => {
+  //   getWidth();
+  // }, [flows]);
 
-  useEffect(() => {
-    if (!graph) {
-      return;
-    }
-    const useData = getEdgesAndNodes(flows);
-    graph.fromJSON(useData);
-    graph.select('node-0');
-  }, [graph]);
+  // useEffect(() => {
+  //   if (!graph) {
+  //     return;
+  //   }
+  //   const useData = getEdgesAndNodes(flows);
+  //   graph.fromJSON(useData);
+  //   graph.select('node-0');
+  // }, [graph]);
 
   return (
     <>
@@ -65,7 +66,15 @@ function ProgressEdit(props: ProgressEditProps) {
           />
         </div>
       </div> */}
-      <StepNode />
+      <StepNode
+        data={flows}
+        style={{ height: 300 }}
+        nodeConfig={{
+          width: 200,
+          height: 200,
+          renderComponent: props => <ProcessNode {...props} />,
+        }}
+      />
       <ProcessForm currentNode={selectNode} />
     </>
   );

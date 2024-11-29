@@ -1,22 +1,18 @@
-import { FC } from 'react';
-import { Graph, Node } from '@antv/x6';
 import classNames from 'classnames';
 import styles from '../index.module.scss';
+import { ProcessNodeType } from '@/components/StepNode';
 
-interface ProcessNodeProps {
-  node: Node;
-  graph: Graph;
-}
-const ProcessNode: FC<ProcessNodeProps> = props => {
-  const { node, graph } = props;
+interface ProcessNodeProps extends ProcessNodeType {}
+function ProcessNode(props: ProcessNodeType) {
+  const {} = props;
 
   return (
     <div
       style={{ width: 200, height: 100 }}
       className={classNames(styles.node, 'graph-node')}
     >
-      node{node.data?.id}
+      node
     </div>
   );
-};
+}
 export default ProcessNode;
