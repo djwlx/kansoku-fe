@@ -49,17 +49,16 @@ function FormilyForm(props: FormilyFormProps) {
   }, [schema]);
 
   useEffect(() => {
-    form.reset();
-    form.onUnmount();
-    form.onMount();
-  }, [schema]);
-
-  useEffect(() => {
     if (form) {
       getFormInstance?.(form);
+    }
+  }, [form]);
+
+  useEffect(() => {
+    if (initValues) {
       form.setValues(initValues);
     }
-  }, [form, initValues]);
+  }, [initValues]);
 
   return (
     <FormProvider form={form}>

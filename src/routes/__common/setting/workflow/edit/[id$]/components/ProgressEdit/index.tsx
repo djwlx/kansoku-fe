@@ -1,10 +1,6 @@
-import { Graph } from '@antv/x6';
 import { useEffect, useState } from 'react';
-import { processSettingConfig, ProgressData } from '../../config';
-import { getEdgesAndNodes } from '../../utils';
-import GraphContainer from './components/GraphContainer';
-import { FormilyForm, StepNode } from '@/components';
-import { Button } from '@douyinfe/semi-ui';
+import { ProgressData } from '../../config';
+import { StepNode } from '@/components';
 import { StepFuncType } from '../../page';
 import ProcessForm from './components/ProcessForm';
 import ProcessNode from './components/ProcessNode';
@@ -17,62 +13,31 @@ interface ProgressEditProps {
 function ProgressEdit(props: ProgressEditProps) {
   const { next, previous, progressData } = props;
   const flows = progressData?.flows || [];
-  // const [graph, setGraph] = useState<Graph>();
-  // const [graphWidth, setGraphWidth] = useState<string | number>('100%');
-  const [selectNode, setSelectNode] = useState();
+  const [selectNode, setSelectNode] = useState(flows[0]);
 
-  console.log(flows, 'flows');
-
-  // // 计算
-  // const getWidth = () => {
-  //   const len = flows.length;
-  //   const useLen =
-  //     processSettingConfig.padding * (len + 1) +
-  //     processSettingConfig.node.width * len;
-  //   setGraphWidth(useLen);
-  // };
-
-  // useEffect(() => {
-  //   getWidth();
-  // }, [flows]);
-
-  // useEffect(() => {
-  //   if (!graph) {
-  //     return;
-  //   }
-  //   const useData = getEdgesAndNodes(flows);
-  //   graph.fromJSON(useData);
-  //   graph.select('node-0');
-  // }, [graph]);
+  const changeNode = (nodeData: any) => {
+    setSelectNode(nodeData);
+  };
 
   return (
     <>
-      {/* <div style={{ width: '100%', overflow: 'auto' }}>
-        <div
-          style={{
-            height:
-              processSettingConfig.node.height +
-              processSettingConfig.padding * 2,
-            width: graphWidth,
-          }}
-        >
-          <GraphContainer
-            onSelect={e => {
-              if (e?.shape === processSettingConfig.node.shape) {
-                setSelectNode(e.data);
-              }
-            }}
-            getGarphApi={setGraph}
-          />
-        </div>
-      </div> */}
       <StepNode
         data={flows}
-        style={{ height: 300 }}
         nodeConfig={{
           width: 200,
-          height: 200,
-          renderComponent: props => <ProcessNode {...props} />,
+          height: 100,
+          renderComponent: props => {
+            const { nodeData } = props;
+            const isSelected =
+              selectNode && selectNode.front_uid === nodeData.front_uid;
+            return (
+              <ProcessNode
+                isSelected={isSelected}
+                onClick={changeNode}
+                {...props}
+              />
+            );
+          },
         }}
       />
       <ProcessForm currentNode={selectNode} />

@@ -5,15 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@antv/x6':
-    specifier: ^2.18.1
-    version: 2.18.1
-  '@antv/x6-plugin-selection':
-    specifier: ^2.2.2
-    version: 2.2.2(@antv/x6@2.18.1)
-  '@antv/x6-react-shape':
-    specifier: ^2.2.3
-    version: 2.2.3(@antv/x6@2.18.1)(react-dom@18.2.0)(react@18.2.0)
   '@douyinfe/semi-icons':
     specifier: ^2.60.0
     version: 2.61.0(react@18.2.0)
@@ -112,45 +103,6 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
-
-  /@antv/x6-common@2.0.17:
-    resolution: {integrity: sha512-37g7vmRkNdYzZPdwjaMSZEGv/MMH0S4r70/Jwoab1mioycmuIBN73iyziX8m56BvJSDucZ3J/6DU07otWqzS6A==}
-    dependencies:
-      lodash-es: 4.17.21
-      utility-types: 3.11.0
-    dev: false
-
-  /@antv/x6-geometry@2.0.5:
-    resolution: {integrity: sha512-MId6riEQkxphBpVeTcL4ZNXL4lScyvDEPLyIafvWMcWNTGK0jgkK7N20XSzqt8ltJb0mGUso5s56mrk8ysHu2A==}
-    dev: false
-
-  /@antv/x6-plugin-selection@2.2.2(@antv/x6@2.18.1):
-    resolution: {integrity: sha512-s2gtR9Onlhr7HOHqyqg0d+4sG76JCcQEbvrZZ64XmSChlvieIPlC3YtH4dg1KMNhYIuBmBmpSum6S0eVTEiPQw==}
-    peerDependencies:
-      '@antv/x6': ^2.x
-    dependencies:
-      '@antv/x6': 2.18.1
-    dev: false
-
-  /@antv/x6-react-shape@2.2.3(@antv/x6@2.18.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-42PGxk3XLnx9bsHQiRPauai5UQCrsh0MbWI3MyHRpjQaC30FK1rqyjH/EJ8qH0p6/cAndszZzCaiPqBbs3FqLQ==}
-    peerDependencies:
-      '@antv/x6': ^2.x
-      react: '>=18.0.0'
-      react-dom: '>= 18.0.0'
-    dependencies:
-      '@antv/x6': 2.18.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
-  /@antv/x6@2.18.1:
-    resolution: {integrity: sha512-FkWdbLOpN9J7dfJ+kiBxzowSx2N6syBily13NMVdMs+wqC6Eo5sLXWCZjQHateTFWgFw7ZGi2y9o3Pmdov1sXw==}
-    dependencies:
-      '@antv/x6-common': 2.0.17
-      '@antv/x6-geometry': 2.0.5
-      utility-types: 3.11.0
-    dev: false
 
   /@babel/code-frame@7.24.7:
     resolution: {integrity: sha512-BcYH1CVJBO9tvyIZ2jVeXgSIMvGZ2FDRvDdOIVQyuklNKSsx+eppDEBq/g47Ayw+RqNFE+URvOShmf+f/qwAlA==}
@@ -7334,10 +7286,6 @@ packages:
     dependencies:
       p-locate: 6.0.0
     dev: true
-
-  /lodash-es@4.17.21:
-    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
-    dev: false
 
   /lodash.camelcase@4.3.0:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}

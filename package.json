@@ -25,9 +25,6 @@
     "dist/"
   ],
   "dependencies": {
-    "@antv/x6": "^2.18.1",
-    "@antv/x6-plugin-selection": "^2.2.2",
-    "@antv/x6-react-shape": "^2.2.3",
     "@douyinfe/semi-icons": "^2.60.0",
     "@douyinfe/semi-icons-lab": "^2.60.0",
     "@douyinfe/semi-ui": "^2.60.0",

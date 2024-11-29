@@ -12,7 +12,7 @@ export type StepFuncType = (type: ProgressType, value: any) => void;
 
 const WorkFlowEdit: FC = () => {
   const { id } = useParams();
-  const [stepIndex, setStepIndex] = useState(1);
+  const [stepIndex, setStepIndex] = useState(0);
   const [progressData, setProgressData] = useState<ProgressData>({});
   const message = Boolean(id) ? '编辑任务流' : '添加任务流';
 

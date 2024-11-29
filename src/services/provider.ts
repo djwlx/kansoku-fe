@@ -1,6 +1,6 @@
 import request from '@/utils/request';
 
-interface AllProviderParams {
+export interface AllProviderParams {
   enable?: boolean;
   provider_type?: string;
   query?: string;
