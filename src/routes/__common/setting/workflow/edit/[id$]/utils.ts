@@ -22,6 +22,7 @@ export const parseData: ProgressData | any = (data: any) => {
       return {
         ...item,
         front_uid: UUID(),
+        status: 'finished',
       };
     }),
   };

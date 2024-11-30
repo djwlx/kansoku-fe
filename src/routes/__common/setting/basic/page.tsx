@@ -1,8 +1,9 @@
 import { Toast } from '@douyinfe/semi-ui';
 import basicSchema from './schema';
-import FormilyForm from '@/components/FormilyForm';
+
 import { updateCommonConfig } from '@/services/config';
 import { useSettingConfig } from '@/hooks';
+import { FormilyForm } from '@/components';
 
 function BasicSetting() {
   const { setting } = useSettingConfig({ type: 'common' });

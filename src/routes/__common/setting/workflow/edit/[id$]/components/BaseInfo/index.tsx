@@ -60,6 +60,7 @@ function BaseInfo(props: BaseInfoProps) {
             return {
               ...item,
               front_uid: UUID(),
+              status: 'unstart',
             };
           });
           saveData?.('flows', useFlow);

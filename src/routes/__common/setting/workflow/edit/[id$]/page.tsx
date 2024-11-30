@@ -41,6 +41,8 @@ const WorkFlowEdit: FC = () => {
     setStepIndex(stepIndex - 1);
   };
 
+  const onStepClick = (index: number) => {};
+
   useEffect(() => {
     if (id) {
       getTaskFlowItem(id).then(res => {
@@ -76,6 +78,7 @@ const WorkFlowEdit: FC = () => {
           progressData={progressData}
           next={nextStep}
           previous={preStep}
+          saveData={saveData}
         />
       )}
     </PageContainer>

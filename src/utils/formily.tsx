@@ -1,6 +1,8 @@
-import { ISchema } from '@formily/react';
-import { SchemaField as FormilySchemaField } from '@formily/semi';
+import { ISchema, createSchemaField } from '@formily/react';
 
-export const SchemaField = <FormilySchemaField components={{}} />;
+export const SchemaField = createSchemaField({
+  components: {},
+  scope: {},
+});
 
 export type DSchema = ISchema['properties'];
