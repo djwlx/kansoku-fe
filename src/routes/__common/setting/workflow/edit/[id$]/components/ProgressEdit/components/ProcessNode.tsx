@@ -34,7 +34,7 @@ function ProcessNode(props: ProcessNodeProps) {
         }}
         className={className}
       >
-        <Space>
+        <Space vertical align="start">
           <span>{nodeName}</span>
           <Tag color={statusOption?.color as any}>{statusOption?.label}</Tag>
         </Space>

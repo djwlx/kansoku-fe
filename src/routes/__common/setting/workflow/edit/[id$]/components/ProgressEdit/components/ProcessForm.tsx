@@ -25,6 +25,7 @@ function ProcessForm(props: ProcessFormProps) {
   const { currentNode = {}, flows, setCurrentNode, saveData } = props;
   const [baseForm, setBaseForm] = useState<FormApi>();
   const [mainForm, setMainForm] = useState<Form>();
+  const [submitLoading, setSubmitLoading] = useState(false);
   const [modal, contextHolder] = Modal.useModal();
   const { schema: mainSchema } = useProviderSchema({
     type: currentNode?.provider_type,
@@ -138,13 +139,18 @@ function ProcessForm(props: ProcessFormProps) {
     setCurrentNode(nextNode);
   };
 
+  const submitAll = () => {
+    const params = {};
+  };
+
+  // 切换节点初始化
   useEffect(() => {
     baseForm?.reset();
     mainForm?.reset();
-    console.log(currentNode, 'current');
+    onProviderChange(currentNode?.id, currentNode?.nodeType === 2);
     baseForm?.setValues(
       {
-        nodeType: currentNode?.nodeType,
+        nodeType: currentNode?.nodeType || 1,
         id: currentNode?.id,
       },
       { isOverride: true },
@@ -208,7 +214,9 @@ function ProcessForm(props: ProcessFormProps) {
           </Button>
         )}
         {isFinished ? (
-          <Button theme="solid">提交工作流</Button>
+          <Button theme="solid" loading={submitLoading} onClick={submitAll}>
+            提交工作流
+          </Button>
         ) : (
           <Tooltip content={'节点未全部配置完成'}>
             <Button theme="solid" disabled>

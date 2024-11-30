@@ -7,12 +7,15 @@ import BaseInfo from './components/BaseInfo';
 import { useParams } from '@modern-js/runtime/router';
 import { getTaskFlowItem } from '@/services/taskflow';
 import { parseData } from './utils';
+import { useModel } from '@modern-js/runtime/model';
+import workFlowModel from './model';
 
 export type StepFuncType = (type: ProgressType, value: any) => void;
 
 const WorkFlowEdit: FC = () => {
   const { id } = useParams();
-  const [stepIndex, setStepIndex] = useState(0);
+  const [{ currentStep }, { setCurrentStep, setWorkFlowData }] =
+    useModel(workFlowModel);
   const [progressData, setProgressData] = useState<ProgressData>({});
   const message = Boolean(id) ? '编辑任务流' : '添加任务流';
 
@@ -33,21 +36,18 @@ const WorkFlowEdit: FC = () => {
 
   const nextStep = (type: ProgressType, value: any) => {
     saveData(type, value);
-    setStepIndex(stepIndex + 1);
   };
 
   const preStep = (type: ProgressType, value: any) => {
     saveData(type, value);
-    setStepIndex(stepIndex - 1);
   };
-
-  const onStepClick = (index: number) => {};
 
   useEffect(() => {
     if (id) {
       getTaskFlowItem(id).then(res => {
         if (res.data?.code === 200) {
           const useData = parseData(res.data?.data?.data);
+          setWorkFlowData(useData);
           setProgressData(useData);
         }
       });
@@ -59,21 +59,21 @@ const WorkFlowEdit: FC = () => {
       <Steps
         style={{ marginTop: 16 }}
         type="basic"
-        current={stepIndex}
-        onChange={setStepIndex}
+        current={0}
+        onChange={setCurrentStep}
       >
         {stepConfig.map(item => (
           <Steps.Step key={item.value} title={item.label} />
         ))}
       </Steps>
-      {stepIndex === 0 && (
+      {currentStep === 0 && (
         <BaseInfo
-          initValue={progressData.basic}
-          next={nextStep}
-          saveData={saveData}
+        // initValue={progressData.basic}
+        // next={nextStep}
+        // saveData={saveData}
         />
       )}
-      {stepIndex === 1 && (
+      {currentStep === 1 && (
         <ProgressEdit
           progressData={progressData}
           next={nextStep}

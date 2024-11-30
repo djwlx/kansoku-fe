@@ -6,6 +6,8 @@ import { v4 as UUID } from 'uuid';
 
 import { DSchema } from '@/utils/formily';
 import { StepFuncType } from '../../page';
+import { useModel } from '@modern-js/runtime/model';
+import workFlowModel from '../../model';
 
 const schema: DSchema = {
   name: {
@@ -36,6 +38,7 @@ interface BaseInfoProps {
 }
 function BaseInfo(props: BaseInfoProps) {
   const { next, initValue, saveData } = props;
+  const [{ workFlowData }, { setWorkFlowData }] = useModel(workFlowModel);
   const [form, setForm] = useState<Form>();
   const { taskTypeList } = useTaskFlowType();
 
@@ -63,6 +66,7 @@ function BaseInfo(props: BaseInfoProps) {
               status: 'unstart',
             };
           });
+
           saveData?.('flows', useFlow);
         });
       });
@@ -73,6 +77,8 @@ function BaseInfo(props: BaseInfoProps) {
       }
     };
   }, [form]);
+
+  useEffect(() => {}, [workFlowData]);
 
   return (
     <div style={{ marginTop: 16 }}>
