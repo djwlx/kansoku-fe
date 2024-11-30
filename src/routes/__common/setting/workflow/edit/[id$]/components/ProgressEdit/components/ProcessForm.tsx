@@ -1,5 +1,5 @@
 import { FormilyForm } from '@/components';
-import { useProviderList, useProviderSchema } from '@/hooks';
+import { useProvider, useProviderList, useProviderSchema } from '@/hooks';
 import { DSchema } from '@/utils/formily';
 import { Button } from '@douyinfe/semi-ui';
 import { Form, onFieldValueChange } from '@formily/core';
@@ -12,9 +12,8 @@ function ProcessForm(props: ProcessFormProps) {
   const { currentNode } = props;
   const [baseForm, setBaseForm] = useState<Form>();
   const [mainForm, setMainForm] = useState<Form>();
-  const [showMainForm, setShowMainForm] = useState(false);
-  const [mainRead, setMainRead] = useState(false);
   const { schema } = useProviderSchema({ type: currentNode?.provider_type });
+  const { getProvider } = useProvider();
   const { providerOptionList } = useProviderList({
     type: currentNode?.provider_type,
   });
@@ -51,6 +50,9 @@ function ProcessForm(props: ProcessFormProps) {
             'x-decorator': 'FormItem',
             'x-component': 'Select',
             required: true,
+            'x-component-props': {
+              showClear: true,
+            },
           },
         },
       },
@@ -78,30 +80,73 @@ function ProcessForm(props: ProcessFormProps) {
     return base;
   }, []);
 
+  const mainSchema = useMemo<DSchema>(() => {
+    const main: DSchema = schema;
+    return main;
+  }, [schema]);
+
   // 基础选项添加联动
   useEffect(() => {
-    if (!baseForm) {
+    if (!(baseForm && mainForm)) {
       return;
     }
     baseForm.addEffects('nodeTypeChange', form => {
       onFieldValueChange('nodeType', field => {
         const type = field.value;
-        if (type === 2 || type === 3) {
-          setShowMainForm(true);
+        if (type === 3) {
+          mainForm.setFormState({
+            display: 'visible',
+            values: {},
+          });
         } else {
-          setShowMainForm(false);
+          mainForm.setFormState({
+            display: 'hidden',
+            values: {},
+          });
         }
       });
     });
     baseForm.addEffects('idChange', form => {
-      onFieldValueChange('id', field => {
+      onFieldValueChange('id', async field => {
         const id = field.value;
+        if (id) {
+          const res = await getProvider({ id });
+          if (res) {
+            mainForm.setFormState({
+              display: 'visible',
+              readPretty: true,
+              values: res,
+            });
+          }
+        } else {
+          mainForm.setFormState({
+            display: 'hidden',
+            readPretty: false,
+            values: {},
+          });
+        }
       });
-      onFieldValueChange('id', field => {
-        const type = field.value;
+      onFieldValueChange('copyId', async field => {
+        const id = field.value;
+        if (id) {
+          const res = await getProvider({ id });
+          if (res) {
+            mainForm.setFormState({
+              display: 'visible',
+              readPretty: false,
+              values: res,
+            });
+          }
+        } else {
+          mainForm.setFormState({
+            display: 'hidden',
+            readPretty: false,
+            values: {},
+          });
+        }
       });
     });
-  }, [baseForm]);
+  }, [baseForm, mainForm]);
   // 基础添加数据
   useEffect(() => {
     if (!baseForm || providerOptionList.length === 0) {
@@ -115,18 +160,14 @@ function ProcessForm(props: ProcessFormProps) {
     });
   }, [baseForm, providerOptionList]);
 
-  useEffect(() => {
-    mainForm?.setFormState({
-      readPretty: mainRead,
-    });
-  }, [mainRead]);
-
   return (
     <>
       <FormilyForm getFormInstance={setBaseForm} schema={baseSchema} />
-      {showMainForm && (
-        <FormilyForm getFormInstance={setMainForm} schema={schema} />
-      )}
+      <FormilyForm
+        initConfig={{ display: 'hidden' }}
+        getFormInstance={setMainForm}
+        schema={mainSchema}
+      />
     </>
   );
 }

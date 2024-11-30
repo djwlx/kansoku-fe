@@ -1,6 +1,6 @@
 import { FormProvider, ISchema, useFormEffects } from '@formily/react';
 import { useEffect, useMemo, ReactNode } from 'react';
-import { createForm } from '@formily/core';
+import { createForm, IFormProps } from '@formily/core';
 import { SchemaField, Space, Submit } from '@formily/semi';
 import { DSchema } from '@/utils/formily';
 
@@ -12,6 +12,7 @@ interface FormilyFormProps {
   submitText?: string;
   submitLoading?: boolean;
   submitExtra?: ReactNode;
+  initConfig?: IFormProps;
 }
 function FormilyForm(props: FormilyFormProps) {
   const {
@@ -22,8 +23,9 @@ function FormilyForm(props: FormilyFormProps) {
     submitText = '保存',
     submitLoading,
     submitExtra,
+    initConfig,
   } = props;
-  const form = useMemo(() => createForm(), []);
+  const form = useMemo(() => createForm(initConfig), []);
 
   const useSchema = useMemo(() => {
     const layoutSchema: ISchema = {
