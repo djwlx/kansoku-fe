@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { Steps } from '@douyinfe/semi-ui';
+import { Form, Steps } from '@douyinfe/semi-ui';
 import { ProgressData, ProgressType, stepConfig } from './config';
 import PageContainer from '@/components/PageContainer';
 import ProgressEdit from './components/ProgressEdit';
@@ -7,47 +7,23 @@ import BaseInfo from './components/BaseInfo';
 import { useParams } from '@modern-js/runtime/router';
 import { getTaskFlowItem } from '@/services/taskflow';
 import { parseData } from './utils';
-import { useModel } from '@modern-js/runtime/model';
-import workFlowModel from './model';
+import { useTaskFlowType } from '@/hooks';
 
 export type StepFuncType = (type: ProgressType, value: any) => void;
 
+const { Input, Switch, Select } = Form;
+
 const WorkFlowEdit: FC = () => {
   const { id } = useParams();
-  const [{ currentStep }, { setCurrentStep, setWorkFlowData }] =
-    useModel(workFlowModel);
+  const { taskTypeList } = useTaskFlowType();
   const [progressData, setProgressData] = useState<ProgressData>({});
   const message = Boolean(id) ? '编辑任务流' : '添加任务流';
-
-  const saveData = (type: ProgressType, value: any) => {
-    if (type === 'basic') {
-      setProgressData({
-        ...progressData,
-        basic: value,
-      });
-    }
-    if (type === 'flows') {
-      setProgressData({
-        ...progressData,
-        flows: value,
-      });
-    }
-  };
-
-  const nextStep = (type: ProgressType, value: any) => {
-    saveData(type, value);
-  };
-
-  const preStep = (type: ProgressType, value: any) => {
-    saveData(type, value);
-  };
 
   useEffect(() => {
     if (id) {
       getTaskFlowItem(id).then(res => {
         if (res.data?.code === 200) {
           const useData = parseData(res.data?.data?.data);
-          setWorkFlowData(useData);
           setProgressData(useData);
         }
       });
@@ -56,31 +32,16 @@ const WorkFlowEdit: FC = () => {
 
   return (
     <PageContainer title={message}>
-      <Steps
-        style={{ marginTop: 16 }}
-        type="basic"
-        current={0}
-        onChange={setCurrentStep}
-      >
-        {stepConfig.map(item => (
-          <Steps.Step key={item.value} title={item.label} />
-        ))}
-      </Steps>
-      {currentStep === 0 && (
-        <BaseInfo
-        // initValue={progressData.basic}
-        // next={nextStep}
-        // saveData={saveData}
+      <Form>
+        <Input label="任务流名称" field="name" />
+        <Switch label="是否启用" field="enable" />
+        <Select
+          style={{ width: '100%' }}
+          label="任务流预设"
+          field="type"
+          optionList={taskTypeList}
         />
-      )}
-      {currentStep === 1 && (
-        <ProgressEdit
-          progressData={progressData}
-          next={nextStep}
-          previous={preStep}
-          saveData={saveData}
-        />
-      )}
+      </Form>
     </PageContainer>
   );
 };

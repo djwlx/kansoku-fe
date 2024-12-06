@@ -19,7 +19,7 @@ function ProviderEdit(props: ProviderEditProps) {
   const [loading, setLoading] = useState(false);
   const providerName = renderMap.optionRender(type, providerTypeList);
   const isEdit = mode === 'edit';
-  const message = isEdit ? `编辑${providerName}` : `新增${providerName}`;
+  const message = isEdit ? `修改${providerName}` : `新增${providerName}`;
 
   const submitAction = async (values: any) => {
     try {
@@ -28,7 +28,7 @@ function ProviderEdit(props: ProviderEditProps) {
       const res = await request({ data: values });
       if (res.data?.code === 200) {
         Toast.success(`${message}成功`);
-        navigate('/setting/provider');
+        navigate(`/setting/provider?provider_type=${type}`);
       }
     } catch (e) {
     } finally {
