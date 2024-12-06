@@ -11,7 +11,7 @@ import { useTaskFlowType } from '@/hooks';
 
 export type StepFuncType = (type: ProgressType, value: any) => void;
 
-const { Input, Switch, Select } = Form;
+const { Input, Switch, Select, Section } = Form;
 
 const WorkFlowEdit: FC = () => {
   const { id } = useParams();
@@ -32,16 +32,26 @@ const WorkFlowEdit: FC = () => {
 
   return (
     <PageContainer title={message}>
-      <Form>
-        <Input label="任务流名称" field="name" />
-        <Switch label="是否启用" field="enable" />
-        <Select
-          style={{ width: '100%' }}
-          label="任务流预设"
-          field="type"
-          optionList={taskTypeList}
-        />
-      </Form>
+      <Form
+        style={{ marginTop: 16 }}
+        render={({ values }) => {
+          return (
+            <>
+              <Section text="基本信息">
+                <Input label="任务流名称" field="name" />
+                <Switch label="是否启用" field="enable" />
+                <Select
+                  style={{ width: '100%' }}
+                  label="任务流预设"
+                  field="type"
+                  optionList={taskTypeList}
+                />
+              </Section>
+              {values.type && <Section text="流程信息"></Section>}
+            </>
+          );
+        }}
+      />
     </PageContainer>
   );
 };
