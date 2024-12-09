@@ -5,3 +5,10 @@ export const parseData = (data: any) => {
 
   return data;
 };
+
+export const formatterData = async (data: any) => {
+  console.log(data, 'data');
+  return {
+    data: data,
+  };
+};

@@ -3,15 +3,19 @@ import { nodeTypeList } from '../../config';
 import useFlowConfig from '../../../../hooks/useFlowConfig';
 import { useProvider, useProviderList } from '@/hooks';
 import { ProviderSemiForm } from '@/components';
+import { useContext, useEffect, useState } from 'react';
+import { FlowContext } from '../../page';
 
 interface NodeFormProps {
   type: string;
   index: number;
 }
-const { Input, Switch, Select, Section } = Form;
+const { Input, Select } = Form;
 
 function NodeForm(props: NodeFormProps) {
   const { type, index } = props;
+  const [mainInstance, setMainInstance] = useState<any>();
+  const { nodeFormInstances, setNodeFormInstances } = useContext(FlowContext);
   const { getFlowNodeField } = useFlowConfig();
   const formApi = useFormApi();
   const { providerOptionList } = useProviderList({ type });
@@ -35,6 +39,24 @@ function NodeForm(props: NodeFormProps) {
       formApi.setValue(`${getFlowNodeField('nodeConfig', index)}`, undefined);
     }
   };
+
+  //将节点表单储存
+  useEffect(() => {
+    const newNodeFormInstances = nodeFormInstances?.filter(
+      (item: any) => item.id !== index,
+    );
+    if (showNodeMainInfo) {
+      setNodeFormInstances?.([
+        ...(newNodeFormInstances || []),
+        {
+          id: index,
+          instance: mainInstance,
+        },
+      ]);
+    } else {
+      setNodeFormInstances?.(newNodeFormInstances);
+    }
+  }, [mainInstance, showNodeMainInfo]);
 
   return (
     <div>
@@ -72,6 +94,7 @@ function NodeForm(props: NodeFormProps) {
       {showNodeMainInfo && (
         <Spin spinning={loading}>
           <ProviderSemiForm
+            getInstance={setMainInstance}
             readOnly={nodeMainReadOnly}
             type={type}
             noLabel

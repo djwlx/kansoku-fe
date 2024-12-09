@@ -2,7 +2,10 @@ import { useProviderType, useTaskFlowType } from '@/hooks';
 import { Collapse, useFormState } from '@douyinfe/semi-ui';
 import NodeForm from './NodeForm';
 
-function FlowForm() {
+interface FlowFormProps {}
+
+function FlowForm(props: FlowFormProps) {
+  const {} = props;
   const { values } = useFormState();
   const { taskTypeList } = useTaskFlowType();
   const useFlows =
