@@ -25,11 +25,12 @@ function PageContainer(props: PageContainerProps) {
     <div
       className={className}
       style={{
+        position: 'relative',
         ...style,
       }}
     >
       <>
-        {useTitle}
+        <header style={{ position: 'sticky', top: 0 }}>{useTitle}</header>
         {children}
       </>
     </div>

@@ -37,15 +37,6 @@ export function useProviderList(params: ProviderListParams) {
     }
     loadData({ provider_type: type });
     setLoading(true);
-    getAllProvider({ provider_type: type })
-      .then(res => {
-        if (res.data?.code === 200) {
-          setProviderList(res.data?.data?.data || []);
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
   }, [type]);
 
   return {

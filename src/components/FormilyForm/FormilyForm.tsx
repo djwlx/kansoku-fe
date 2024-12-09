@@ -1,14 +1,13 @@
 import { FormProvider, ISchema } from '@formily/react';
 import { useEffect, useMemo, ReactNode } from 'react';
-import { createForm, IFormProps } from '@formily/core';
+import { createForm, Form, IFormProps } from '@formily/core';
 import { Space, Submit } from '@formily/semi';
 import { DSchema } from '@/utils/formily';
-import { FormItem } from './components/FormItem';
 import { SchemaField } from './SchemaField';
 
 export interface FormilyFormProps {
   schema: DSchema;
-  getFormInstance?: (form: any) => void;
+  getFormInstance?: (form: Form) => void;
   onSubmit?: (values: any) => void;
   initValues?: any;
   submitText?: string;
