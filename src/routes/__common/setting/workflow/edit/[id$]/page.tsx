@@ -1,9 +1,13 @@
 import { FC, useEffect, useState, createContext } from 'react';
 import { Button, Space, Form, Toast } from '@douyinfe/semi-ui';
 import { useNavigate, useParams } from '@modern-js/runtime/router';
-import { createTaskFlow, getTaskFlowItem } from '@/services/taskflow';
+import {
+  createTaskFlow,
+  getTaskFlowItem,
+  updateTaskFlow,
+} from '@/services/taskflow';
 import { formatterData, parseData } from './utils';
-import { useTaskFlowType } from '@/hooks';
+import { useProvider, useTaskFlowType } from '@/hooks';
 import FlowForm from './components/FlowForm';
 import { FormApi as SFormApi } from '@douyinfe/semi-ui/lib/es/form';
 import { Form as FForm } from '@formily/core';
@@ -23,25 +27,25 @@ const { Input, Switch, Select, Section } = Form;
 const WorkFlowEdit: FC = () => {
   const { id } = useParams();
   const { taskTypeList } = useTaskFlowType();
-  const [progressData, setProgressData] = useState({});
   const [formApi, setFormApi] = useState<SFormApi>();
   const message = Boolean(id) ? '编辑任务流' : '添加任务流';
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { getProvider } = useProvider();
   const [nodeFormInstances, setNodeFormInstances] = useState<NodeInstance[]>(
     [],
   );
 
   useEffect(() => {
-    if (id) {
+    if (id && formApi) {
       getTaskFlowItem(id).then(res => {
         if (res.data?.code === 200) {
           const useData = parseData(res.data?.data?.data);
-          setProgressData(useData);
+          formApi?.setValues(useData, { isOverride: true });
         }
       });
     }
-  }, [id]);
+  }, [id, formApi]);
 
   const submit = async () => {
     try {
@@ -51,9 +55,11 @@ const WorkFlowEdit: FC = () => {
       );
       await Promise.all(instanceValidates);
 
-      const result = await formatterData(values);
+      const result = await formatterData(values, id);
 
-      const res = await createTaskFlow(result);
+      const request = id ? updateTaskFlow : createTaskFlow;
+
+      const res = await request(result);
       if (res.data?.code === 200) {
         Toast.success('保存成功');
         navigate(`/setting/workflow`);
@@ -102,7 +108,7 @@ const WorkFlowEdit: FC = () => {
           );
         }}
       />
-      <Space>
+      <Space style={{ marginTop: 16 }}>
         <Button loading={loading} type="primary" theme="solid" onClick={submit}>
           保存
         </Button>

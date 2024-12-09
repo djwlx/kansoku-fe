@@ -5,6 +5,7 @@ import { useProvider, useProviderList } from '@/hooks';
 import { ProviderSemiForm } from '@/components';
 import { useContext, useEffect, useState } from 'react';
 import { FlowContext } from '../../page';
+import { useParams } from '@modern-js/runtime/router';
 
 interface NodeFormProps {
   type: string;
@@ -14,7 +15,11 @@ const { Input, Select } = Form;
 
 function NodeForm(props: NodeFormProps) {
   const { type, index } = props;
+  const { id } = useParams();
+  // 是否是修改
+  const isEdit = Boolean(id);
   const [mainInstance, setMainInstance] = useState<any>();
+  const [hasInit, setHasInit] = useState(false);
   const { nodeFormInstances, setNodeFormInstances } = useContext(FlowContext);
   const { getFlowNodeField } = useFlowConfig();
   const formApi = useFormApi();
@@ -39,6 +44,10 @@ function NodeForm(props: NodeFormProps) {
       formApi.setValue(`${getFlowNodeField('nodeConfig', index)}`, undefined);
     }
   };
+  const onNodeTypeChange = (nodeType: number) => {
+    formApi.setValue(`${getFlowNodeField('nodeId', index)}`, undefined);
+    formApi.setValue(`${getFlowNodeField('nodeConfig', index)}`, undefined);
+  };
 
   //将节点表单储存
   useEffect(() => {
@@ -58,6 +67,18 @@ function NodeForm(props: NodeFormProps) {
     }
   }, [mainInstance, showNodeMainInfo]);
 
+  // 回显
+  useEffect(() => {
+    const backFill = async () => {
+      if (nodeIdValue && isEdit && !hasInit) {
+        const result = await getProvider({ id: nodeIdValue });
+        formApi.setValue(`${getFlowNodeField('nodeConfig', index)}`, result);
+        setHasInit(true);
+      }
+    };
+    backFill();
+  }, [nodeIdValue]);
+
   return (
     <div>
       {/* 只读 */}
@@ -75,6 +96,7 @@ function NodeForm(props: NodeFormProps) {
         label="节点类型"
         field={getFlowNodeField('nodeType', index)}
         showClear
+        onChange={onNodeTypeChange as any}
         style={{ width: '100%' }}
         optionList={nodeTypeList}
         rules={[{ required: true, message: '该字段是必填字段' }]}
