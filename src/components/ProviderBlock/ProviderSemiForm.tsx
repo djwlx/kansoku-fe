@@ -9,9 +9,10 @@ interface ProviderFormProps {
   value?: any;
   readOnly?: boolean;
   onChange?: (value: any) => void;
+  getInstance?: (form: Form) => void;
 }
 function ProviderForm(props: ProviderFormProps) {
-  const { value, onChange, type, readOnly } = props;
+  const { value, onChange, type, readOnly, getInstance } = props;
   const { schema } = useProviderSchema({ type });
   const [form, setForm] = useState<Form>();
 
@@ -19,6 +20,7 @@ function ProviderForm(props: ProviderFormProps) {
     if (!form) {
       return;
     }
+    getInstance?.(form);
     form.addEffects('onValueChange', form => {
       onFormInputChange(form => {
         const values = form.getFormState().values;

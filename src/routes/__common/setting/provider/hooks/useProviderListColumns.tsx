@@ -4,7 +4,7 @@ import { ColumnProps } from '@douyinfe/semi-ui/lib/es/table';
 import { useNavigate } from '@modern-js/runtime/router';
 import { deleteProvider } from '@/services/provider';
 
-interface ColumnParams {
+export interface ColumnParams {
   reload?: () => void;
 }
 function useProviderListColumns(params: ColumnParams) {

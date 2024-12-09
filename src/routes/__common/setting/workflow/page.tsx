@@ -9,7 +9,6 @@ function WorkFlowSetting() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
   const navigate = useNavigate();
-  const { columns } = useWorkflowColumns();
 
   const loadData = () => {
     setLoading(true);
@@ -23,6 +22,7 @@ function WorkFlowSetting() {
         setLoading(false);
       });
   };
+  const { columns } = useWorkflowColumns({ reload: loadData });
 
   useEffect(() => {
     loadData();

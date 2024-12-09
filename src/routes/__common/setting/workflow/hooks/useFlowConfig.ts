@@ -1,5 +1,5 @@
 function useFlowConfig() {
-  const prefix = 'flow';
+  const prefix = 'flows';
 
   const getFlowNodeField = (field: string, index?: number) => {
     if (typeof index === 'number') {

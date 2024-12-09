@@ -1,13 +1,26 @@
 import { useTaskFlowType } from '@/hooks';
+import { deleteTaskFlow } from '@/services/taskflow';
 import { renderMap } from '@/utils/render';
 import { IconDelete, IconEdit } from '@douyinfe/semi-icons';
-import { Popconfirm, Space } from '@douyinfe/semi-ui';
+import { Popconfirm, Space, Toast } from '@douyinfe/semi-ui';
 import { ColumnProps } from '@douyinfe/semi-ui/lib/es/table';
 import { useNavigate } from '@modern-js/runtime/router';
+import { ColumnParams } from '../../provider/hooks/useProviderListColumns';
 
-function useWorkflowColumns() {
+function useWorkflowColumns(params: ColumnParams) {
+  const { reload } = params;
   const { taskTypeList } = useTaskFlowType();
   const navigate = useNavigate();
+
+  const deleteItem = async (record: any) => {
+    try {
+      const res = await deleteTaskFlow(record.id);
+      if (res.data?.code === 200) {
+        Toast.success('删除成功');
+        reload?.();
+      }
+    } catch (e) {}
+  };
 
   const columns: ColumnProps[] = [
     {
@@ -51,7 +64,7 @@ function useWorkflowColumns() {
               title="确定要删除这个工作流吗？"
               content="此删除将不可逆"
               okType="danger"
-              onConfirm={() => console.log('eee')}
+              onConfirm={() => deleteItem(record)}
             >
               <IconDelete
                 style={{
