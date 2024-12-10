@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Button, Space } from '@douyinfe/semi-ui';
 import { useNavigate } from '@modern-js/runtime/router';
 import useProviderListColumns from '../hooks/useProviderListColumns';
-import { getAllProvider } from '@/services/provider';
 import { ProTable } from '@/components';
+import { useProviderList } from '@/hooks';
 
 interface PresetTableProps {
   type: string;
@@ -11,24 +11,13 @@ interface PresetTableProps {
 }
 function PresetTable(props: PresetTableProps) {
   const { type, name } = props;
-  const [dataSource, setDataSource] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const { providerList, loadData, loading } = useProviderList({ type });
   const navigate = useNavigate();
-
-  const loadData = () => {
-    const params = { provider_type: type };
-    setLoading(true);
-    getAllProvider(params)
-      .then(res => {
-        if (res.data?.code === 200) {
-          setDataSource(res.data?.data?.data || []);
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
   const { columns } = useProviderListColumns({ reload: loadData });
+
+  const onNew = () => {
+    navigate(`/setting/provider/edit?type=${type}`);
+  };
 
   useEffect(() => {
     if (!type) {
@@ -36,10 +25,6 @@ function PresetTable(props: PresetTableProps) {
     }
     loadData();
   }, [type]);
-
-  const onNew = () => {
-    navigate(`/setting/provider/edit?type=${type}`);
-  };
 
   return (
     <ProTable
@@ -49,7 +34,7 @@ function PresetTable(props: PresetTableProps) {
         </Space>
       }
       loading={loading}
-      dataSource={dataSource}
+      dataSource={providerList}
       columns={columns}
     />
   );

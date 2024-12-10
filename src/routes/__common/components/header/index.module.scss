@@ -1,0 +1,11 @@
+.header {
+  height: 60px;
+  background-color: var(--semi-color-primary);
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  color: var(--semi-color-bg-0);
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: space-between;
+}

@@ -6,13 +6,20 @@ interface ProviderListParams {
 }
 export function useProviderList(params: ProviderListParams) {
   const { type } = params;
+
   const [providerList, setProviderList] = useState([]);
   const [providerOptionList, setProviderOptionList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const loadData = (requestParam: AllProviderParams) => {
+  const loadData = (requestParam?: AllProviderParams) => {
     setLoading(true);
-    getAllProvider(requestParam)
+    const defaultParam = {
+      provider_type: type,
+    };
+
+    const useParam = requestParam || defaultParam;
+
+    getAllProvider(useParam)
       .then(res => {
         if (res.data?.code === 200) {
           setProviderList(res.data?.data?.data || []);
@@ -35,8 +42,7 @@ export function useProviderList(params: ProviderListParams) {
     if (!type) {
       return;
     }
-    loadData({ provider_type: type });
-    setLoading(true);
+    loadData();
   }, [type]);
 
   return {
