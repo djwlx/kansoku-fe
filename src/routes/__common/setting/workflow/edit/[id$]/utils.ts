@@ -23,7 +23,7 @@ export const parseData = (data: any) => {
 export const formatter = (type: string) => {};
 
 export const formatterData = async (data: any, id?: string) => {
-  const allFlows = data?.flows.map(item => {
+  const allFlows = data?.flows?.filter(Boolean).map(item => {
     return {
       ...item,
       uuid: UUID(),

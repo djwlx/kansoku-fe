@@ -81,6 +81,9 @@ const WorkFlowEdit: FC = () => {
         render={({ values }) => {
           return (
             <>
+              <Section text="执行信息">
+                <RunForm field="task" noLabel />
+              </Section>
               <Section text="基本信息">
                 <Input
                   label="任务流名称"
@@ -95,9 +98,6 @@ const WorkFlowEdit: FC = () => {
                   rules={[{ required: true, message: '任务流预设必填' }]}
                   optionList={taskTypeList}
                 />
-              </Section>
-              <Section text="执行信息">
-                <RunForm field="task" noLabel />
               </Section>
               {values.type && (
                 <Section text="流程信息">
