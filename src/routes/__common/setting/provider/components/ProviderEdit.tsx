@@ -5,6 +5,8 @@ import { FormilyForm } from '@/components';
 import { useProviderSchema, useProviderType } from '@/hooks';
 import { createProvider, updateProvider } from '@/services/provider';
 import { renderMap } from '@/utils/render';
+import { useModel } from '@modern-js/runtime/model';
+import configModel from '@/model/config';
 
 interface ProviderEditProps {
   type: string;
@@ -18,6 +20,7 @@ function ProviderEdit(props: ProviderEditProps) {
   const { providerTypeList } = useProviderType();
   const [loading, setLoading] = useState(false);
   const providerName = renderMap.optionRender(type, providerTypeList);
+  const [{}, actions] = useModel(configModel);
   const isEdit = mode === 'edit';
   const message = isEdit ? `修改${providerName}` : `新增${providerName}`;
 
@@ -32,6 +35,7 @@ function ProviderEdit(props: ProviderEditProps) {
       }
     } catch (e) {
     } finally {
+      actions.getConfigStatus();
       setLoading(false);
     }
   };

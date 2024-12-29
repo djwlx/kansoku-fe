@@ -12,6 +12,8 @@ import FlowForm from './components/FlowForm';
 import { FormApi as SFormApi } from '@douyinfe/semi-ui/lib/es/form';
 import { Form as FForm } from '@formily/core';
 import RunForm from './components/FlowForm/RunForm';
+import { useModel } from '@modern-js/runtime/model';
+import configModel from '@/model/config';
 
 export type NodeInstance = {
   id: number | 'task';
@@ -32,6 +34,7 @@ const WorkFlowEdit: FC = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { getProvider } = useProvider();
+  const [{}, actions] = useModel(configModel);
   const [nodeFormInstances, setNodeFormInstances] = useState<NodeInstance[]>(
     [],
   );
@@ -67,6 +70,7 @@ const WorkFlowEdit: FC = () => {
     } catch (e) {
       console.log(e, 'error');
     } finally {
+      actions.getConfigStatus();
       setLoading(false);
     }
   };
