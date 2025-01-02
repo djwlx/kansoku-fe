@@ -2,12 +2,13 @@ import { useTaskFlowType } from '@/hooks';
 import { deleteTaskFlow } from '@/services/taskflow';
 import { renderMap } from '@/utils/render';
 import { IconDelete, IconEdit } from '@douyinfe/semi-icons';
-import { Popconfirm, Space, Toast } from '@douyinfe/semi-ui';
+import { Popconfirm, Space, Timeline, Toast } from '@douyinfe/semi-ui';
 import { ColumnProps } from '@douyinfe/semi-ui/lib/es/table';
 import { useNavigate } from '@modern-js/runtime/router';
 import { ColumnParams } from '../../provider/hooks/useProviderListColumns';
+import dayjs from 'dayjs';
 
-function useWorkflowColumns(params: ColumnParams) {
+function useTaskflowColumns(params: ColumnParams) {
   const { reload } = params;
   const { taskTypeList } = useTaskFlowType();
   const navigate = useNavigate();
@@ -24,12 +25,34 @@ function useWorkflowColumns(params: ColumnParams) {
 
   const columns: ColumnProps[] = [
     {
-      title: '工作流名称',
+      title: '任务流名称',
       dataIndex: 'name',
       width: 200,
     },
     {
-      title: '工作流类型',
+      title: '运行信息',
+      dataIndex: 'task',
+      width: 200,
+      render: text => {
+        if (!text.next_time) {
+          return renderMap.emptyRender();
+        }
+        return (
+          <Timeline>
+            {/* <Timeline.Item time="2019-07-14 10:35" type="success">
+              上次运行时间
+            </Timeline.Item> */}
+            <Timeline.Item
+              time={dayjs(text.next_time * 1000).format('YYYY-MM-DD HH:mm:ss')}
+            >
+              下次运行时间
+            </Timeline.Item>
+          </Timeline>
+        );
+      },
+    },
+    {
+      title: '任务流类型',
       dataIndex: 'type',
       width: 200,
       render: (text: string) => {
@@ -57,11 +80,11 @@ function useWorkflowColumns(params: ColumnParams) {
                 cursor: 'pointer',
                 color: 'var(--semi-color-primary)',
               }}
-              onClick={() => navigate(`/setting/workflow/edit/${record.id}`)}
+              onClick={() => navigate(`/setting/taskflow/edit/${record.id}`)}
             />
             <Popconfirm
               trigger="click"
-              title="确定要删除这个工作流吗？"
+              title="确定要删除这个任务流吗？"
               content="此删除将不可逆"
               okType="danger"
               onConfirm={() => deleteItem(record)}
@@ -80,4 +103,4 @@ function useWorkflowColumns(params: ColumnParams) {
   ];
   return { columns };
 }
-export default useWorkflowColumns;
+export default useTaskflowColumns;

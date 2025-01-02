@@ -33,8 +33,8 @@ function Menu(props: MenuProps) {
             text: '节点预设',
           },
           {
-            itemKey: '/setting/workflow',
-            text: '工作流',
+            itemKey: '/setting/taskflow',
+            text: '任务流',
           },
         ],
       },

@@ -26,7 +26,7 @@ export const FlowContext = createContext<{
 
 const { Input, Switch, Select, Section } = Form;
 
-const WorkFlowEdit: FC = () => {
+const TaskFlowEdit: FC = () => {
   const { id } = useParams();
   const { taskTypeList } = useTaskFlowType();
   const [formApi, setFormApi] = useState<SFormApi>();
@@ -65,7 +65,7 @@ const WorkFlowEdit: FC = () => {
       const res = await request(result);
       if (res.data?.code === 200) {
         Toast.success('保存成功');
-        navigate(`/setting/workflow`);
+        navigate(`/setting/taskflow`);
       }
     } catch (e) {
       console.log(e, 'error');
@@ -120,4 +120,4 @@ const WorkFlowEdit: FC = () => {
     </FlowContext.Provider>
   );
 };
-export default WorkFlowEdit;
+export default TaskFlowEdit;

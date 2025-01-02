@@ -3,6 +3,7 @@ import { Popconfirm, Space, Toast } from '@douyinfe/semi-ui';
 import { ColumnProps } from '@douyinfe/semi-ui/lib/es/table';
 import { useNavigate } from '@modern-js/runtime/router';
 import { deleteProvider } from '@/services/provider';
+import { renderMap } from '@/utils/render';
 
 export interface ColumnParams {
   reload?: () => void;
@@ -28,6 +29,22 @@ function useProviderListColumns(params: ColumnParams) {
     {
       title: '预设类型',
       dataIndex: 'metadata.type',
+    },
+    {
+      title: '任务流引用',
+      dataIndex: 'task_flows',
+      render: (text, record) => {
+        if (!text || text.length === 0) {
+          return renderMap.emptyRender();
+        }
+        return (
+          <div>
+            {text?.map((item: any) => {
+              return <div key={`${record.id}${item.id}`}>{item.name}</div>;
+            })}
+          </div>
+        );
+      },
     },
     {
       title: '是否启用',

@@ -5,11 +5,15 @@ export interface AllProviderParams {
   provider_type?: string;
   query?: string;
   type?: string;
+  task_flow?: boolean;
 }
 // 获取节点预设列表
 export const getAllProvider = (params?: AllProviderParams) => {
   return request.get('/provider/', {
-    params,
+    params: {
+      ...params,
+      task_flow: true,
+    },
   });
 };
 

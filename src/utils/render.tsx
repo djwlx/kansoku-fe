@@ -8,4 +8,7 @@ export const renderMap = {
       return value;
     }
   },
+  emptyRender: () => {
+    return '-';
+  },
 };

@@ -1,0 +1,14 @@
+.step {
+  :global {
+    .semi-steps-item-content {
+      flex: 1;
+    }
+  }
+}
+.taskList {
+  :global {
+    .semi-timeline > .semi-timeline-item:last-child {
+      padding: 0;
+    }
+  }
+}

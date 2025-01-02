@@ -3,9 +3,10 @@ import { useNavigate } from '@modern-js/runtime/router';
 import { ProTable } from '@/components';
 import { useEffect, useState } from 'react';
 import { getTaskFlowList } from '@/services/taskflow';
-import useWorkflowColumns from './hooks/useWorkflowColumns';
+import useTaskflowColumns from './hooks/useTaskflowColumns';
+import styles from './index.module.scss';
 
-function WorkFlowSetting() {
+function TaskFlowSetting() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
   const navigate = useNavigate();
@@ -22,14 +23,14 @@ function WorkFlowSetting() {
         setLoading(false);
       });
   };
-  const { columns } = useWorkflowColumns({ reload: loadData });
+  const { columns } = useTaskflowColumns({ reload: loadData });
 
   useEffect(() => {
     loadData();
   }, []);
 
   return (
-    <div style={{ padding: 16 }}>
+    <div style={{ padding: 16 }} className={styles.taskList}>
       <ProTable
         headerExtra={
           <Space style={{ marginBottom: 8 }}>
@@ -37,10 +38,10 @@ function WorkFlowSetting() {
               type="primary"
               theme="solid"
               onClick={() => {
-                navigate('/setting/workflow/edit');
+                navigate('/setting/taskflow/edit');
               }}
             >
-              新增工作流
+              新增任务流
             </Button>
           </Space>
         }
@@ -51,4 +52,4 @@ function WorkFlowSetting() {
     </div>
   );
 }
-export default WorkFlowSetting;
+export default TaskFlowSetting;

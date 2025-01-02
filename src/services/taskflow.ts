@@ -3,7 +3,10 @@ import request from '@/utils/request';
 // 获取任务流列表
 export const getTaskFlowList = (params?: any) => {
   return request.get('/taskflow/', {
-    params,
+    params: {
+      ...params,
+      full: true,
+    },
   });
 };
 // 获取单个任务流
